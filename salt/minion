@@ -1,0 +1,13 @@
+# vi: set ft=sls
+file_client: local
+
+file_roots:
+  base:
+    - /srv/salt
+
+pillar_roots:
+  base:
+    - /srv/pillar
+
+state_verbose: False
+state_output: changes
