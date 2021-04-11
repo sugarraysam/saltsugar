@@ -1,4 +1,4 @@
-TARGETS := validate up clean
+TARGETS := validate up status destroy deploy
 .PHONY: $(TARGETS)
 
 validate:
@@ -7,5 +7,12 @@ validate:
 up: validate
 	@vagrant up --provision
 
-clean:
+status: validate
+	@vagrant status
+
+destroy:
 	@vagrant destroy --force
+
+# Copy files to current machine + run highstate
+deploy:
+	@sudo ./scripts/run.sh prod highstate

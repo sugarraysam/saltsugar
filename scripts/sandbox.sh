@@ -5,6 +5,7 @@ export BASE_PKGS=(
     vim
     salt
     which
+    zsh
 )
 
 function pacmanInit() {

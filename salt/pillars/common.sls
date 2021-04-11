@@ -1,3 +1,5 @@
+{% set home = grains['sugar']['user_home'] %}
+
 common:
   pkgs:
     - git # the fast distributed version control system
@@ -7,46 +9,63 @@ common:
     - pinentry # Collection of simple PIN or passphrase entry dialogs which utilize the Assuan protocol
     - shellcheck # Shell script analysis tool (required by VScode extension)
     - shfmt # Format shell programs (required by VScode extension)
-  dirs_to_create_user:
-    - {{ grains['defaults']['user_home'] }}/opt
-    - {{ grains['defaults']['user_home'] }}/dwl
-    - {{ grains['defaults']['user_home'] }}/perso
-    - {{ grains['defaults']['user_home'] }}/geek/test
-    - {{ grains['defaults']['user_home'] }}/.local/bin
-    - {{ grains['defaults']['user_home'] }}/.backup/files
-    - {{ grains['defaults']['user_home'] }}/.gnupg
-  dirs_to_create_root:
-    - /etc/systemd/system/getty@tty1.service.d
-  dotfiles_user:
+    - tldr # Command line client for tldr, a collection of simplified and community-driven man pages.
+  # Defaults:
+  # - user: pillar['sugar']['user']
+  # - group: pillar['sugar']['user']
+  # - mode: 0755
+  dirs:
+    - { path: {{ home }}/opt }
+    - { path: {{ home }}/dwl }
+    - { path: {{ home }}/perso }
+    - { path: {{ home }}/geek/test }
+    - { path: {{ home }}/.local/bin }
+    - { path: {{ home }}/.backup/files }
+    - { path: {{ home }}/.gnupg, mode: 0700 }
+    - { path: /etc/systemd/system/getty@tty1.service.d, user: root, group: root }
+  # Defaults:
+  # - user: pillar['sugar']['user']
+  # - group: pillar['sugar']['user']
+  # - mode: 0755
+  dotfiles:
     - {
-        src: "salt://common/dotfiles/user/bible",
-        dest: {{ grains['defaults']['user_home'] }}/geek/bible,
+        src: /srv/salt/common/dotfiles/user/bible,
+        dest: {{ home }}/geek/bible,
       }
     - {
-        src: "salt://common/dotfiles/user/gpg-agent.conf",
-        dest: {{ grains['defaults']['user_home'] }}/.gnupg/gpg-agent.conf,
+        src: /srv/salt/common/dotfiles/user/gpg-agent.conf,
+        dest: {{ home }}/.gnupg/gpg-agent.conf,
       }
     - {
-        src: "salt://common/dotfiles/user/gopass-config.yml",
-        dest: {{ grains['defaults']['user_home'] }}/.config/gopass/config.yml,
+        src: /srv/salt/common/dotfiles/user/gopass-config.yml,
+        dest: {{ home }}/.config/gopass/config.yml,
       }
     - {
-        src: "salt://common/dotfiles/user/ssh_config",
-        dest: {{ grains['defaults']['user_home'] }}/.ssh/config,
+        src: /srv/salt/common/dotfiles/user/ssh_config,
+        dest: {{ home }}/.ssh/config,
       }
-  # TODO, just a symlink..not a dotfile
-  dotfiles_root:
     - {
         src: /usr/bin/pinentry-curses,
-        dest: /usr/bin/pinentry
+        dest: /usr/bin/pinentry,
+        user: root,
+        group: root,
       }
   files_to_remove:
-    - {{ grains['defaults']['user_home'] }}/.bash_logout
-    - {{ grains['defaults']['user_home'] }}/.bash_profile
-    - {{ grains['defaults']['user_home'] }}/.bashrc
-    - {{ grains['defaults']['user_home'] }}/Desktop
+    - {{ home }}/.bash_logout
+    - {{ home }}/.bash_profile
+    - {{ home }}/.bashrc
+    - {{ home }}/Desktop
   zsh_completions:
-    - {
-        cmd: "gopass completion zsh",
-        dest: "_gopass"
-      }
+    - "gopass completion zsh > /usr/share/zsh/site-functions/_gopass"
+  systemd_cmd:
+    - "timedatectl set-timezone {{ grains['sugar']['timezone'] }}"
+    - "timedatectl set-ntp true"
+    - "hostnamectl set-hostname {{ grains['sugar']['hostname'] }}"
+    - "localectl set-keymap {{ grains['sugar']['keymap'] }}"
+  git_configs:
+    - { name: user.name, value: {{ grains['sugar']['git_username'] }} }
+    - { name: user.email, value: {{ grains['sugar']['git_email'] }} }
+    - { name: merge.conflictstyle, value: diff3 }
+    - { name: branch.autosetuprebase, value: always }
+    - { name: advice.addIgnoredFile, value: false }
+    - { name: pull.rebase, value: false }

@@ -1,30 +1,22 @@
-# Create user dotfiles
-{% for f in pillar['common']['dotfiles_user'] %}
-{{ f.src }}:
-  file.symlink:
-    - target: {{ f.dest }}
-    - force: True
-    - makedirs: True
-    - user: {{ pillar['defaults']['user'] }}
-    - group: {{ pillar['defaults']['user'] }}
-{% endfor %}
+include:
+  - .base
+  - .systemd
 
-# Create user directories
-{% for d in pillar['common']['dirs_to_create_user'] %}
-{{ d }}:
-  file.directory:
-    - user: {{ pillar['defaults']['user'] }}
-    - group: {{ pillar['defaults']['user'] }}
-    - mode: 0755
-    - makedirs: True
-{% endfor %}
+# Update tldr cache
+"tldr -u":
+  cmd.run:
+    - runas: {{ grains['sugar']['user'] }}
+    - require:
+      - sls: common.base
 
-# Create root directories
-{% for d in pillar['common']['dirs_to_create_root'] %}
-{{ d }}:
-  file.directory:
-    - user: root
-    - group: root
-    - mode: 0755
-    - makedirs: True
+# Setup .gitconfig
+{% for cfg in pillar['common']['git_configs'] %}
+git_cfg_{{ cfg.name }}:
+  git.config_set:
+    - name: {{ cfg.name }}
+    - value: {{ cfg.value }}
+    - user: {{ grains['sugar']['user'] }}
+    - global: True
+    - require:
+      - sls: common.base
 {% endfor %}
