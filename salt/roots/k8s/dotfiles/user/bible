@@ -1,0 +1,26 @@
+# Dockerfile alpine keep container up in background (sleep 5 days)
+CMD ["sleep", "5d"]
+
+# Vim modeline feature (e.g.: force filetype)
+:set modeline? modelines?
+[comment] vim: set ft=<filetype> \:
+
+# Exploit docker daemon to become system root
+$ docker run --privileged -ti -v /:/host <image>:<tag> chroot /host
+
+# Export and encrypt GPG private key
+$ gpg --export-secret-key --armor <ID> | gpg -c --no-symkey-cache > <file>.asc.enc
+
+# Import and decrypt GPG private key
+$ gpg -o - <file>.asc.enc | gpg
+
+# Change password of an existing ssh private key
+$ ssh-keygen -p -f ~/.ssh/<private_key>
+
+# Enable tkinter in python venv - compile appropriate python version /w tcl-tk support using PYTHON_CONFIGURE_OPTS
+$ pacman -S tk tcl
+$ export PYTHON_CONFIGURE_OPTS="--with-tcltk-includes='-I/usr/include' --with-tcltk-libs='-L/usr/lib -ltcl<version> -ltk<version>'"
+$ pyenv install <version>
+$ pipenv --python <Aversion>
+$ pipenv shell
+$ python -m tkinter

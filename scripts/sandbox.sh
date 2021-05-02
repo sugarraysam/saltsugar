@@ -6,6 +6,7 @@ export BASE_PKGS=(
     salt
     which
     zsh
+    zsh-completions
 )
 
 function pacmanInit() {
@@ -27,9 +28,14 @@ function copyEtcMinion() {
     cp /tmp/minion /etc/salt/minion
 }
 
+function configureZsh() {
+    chsh --shell /usr/bin/zsh vagrant
+}
+
 ###
 ### Run
 ###
 pacmanInit
 installBasePkgs
 copyEtcMinion
+configureZsh

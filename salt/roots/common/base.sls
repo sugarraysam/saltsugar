@@ -5,15 +5,9 @@ common_pkgs:
   pkg.installed:
     - pkgs: {{ pillar['common']['pkgs'] }}
 
-# Create directories
-{% for d in pillar['common']['dirs'] %}
-{{ d.path }}:
-  file.directory:
-    - user: {% if d.user is defined %} {{ d.user }} {% else %} {{ user }} {% endif %}
-    - group: {% if d.group is defined %} {{ d.group }} {% else %} {{ user }} {% endif %}
-    - mode: {% if d.mode is defined %} {{ d.mode }} {% else %} 0755 {% endif %}
-    - makedirs: True
-{% endfor %}
+common_dirs:
+  sugfile.directories:
+    - dirs: {{ pillar['common']['dirs'] }}
 
 # Create dotfiles
 {% for f in pillar['common']['dotfiles'] %}

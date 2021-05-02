@@ -18,9 +18,6 @@ Vagrant.configure('2') do |config|
       vb.name = 'sandbox'
     end
 
-    # Set zsh as default shell
-    sandbox.ssh.shell = 'zsh'
-
     # Salt masterless
     sandbox.vm.synced_folder './salt/roots/', '/srv/salt/'
     sandbox.vm.synced_folder './salt/pillars/', '/srv/pillar/'
