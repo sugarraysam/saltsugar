@@ -10,10 +10,6 @@ common:
     - shellcheck # Shell script analysis tool (required by VScode extension)
     - shfmt # Format shell programs (required by VScode extension)
     - tldr # Command line client for tldr, a collection of simplified and community-driven man pages.
-  # Defaults:
-  # - user: pillar['sugar']['user']
-  # - group: pillar['sugar']['user']
-  # - mode: 0755
   dirs:
     - { path: {{ home }}/opt }
     - { path: {{ home }}/dwl }
@@ -23,10 +19,6 @@ common:
     - { path: {{ home }}/.backup/files }
     - { path: {{ home }}/.gnupg, mode: 0700 }
     - { path: /etc/systemd/system/getty@tty1.service.d, user: root, group: root }
-  # Defaults:
-  # - user: pillar['sugar']['user']
-  # - group: pillar['sugar']['user']
-  # - mode: 0755
   dotfiles:
     - {
         src: /srv/salt/common/dotfiles/user/bible,

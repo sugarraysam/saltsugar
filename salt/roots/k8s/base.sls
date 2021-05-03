@@ -1,24 +1,17 @@
-{% set user = grains['sugar']['user'] %}
-
-# Install pkgs
 k8s_pkgs:
   pkg.installed:
     - pkgs: {{ pillar['k8s']['pkgs'] }}
 
-# Create directories
-{% for d in pillar['k8s']['dirs'] %}
-{{ d.path }}:
-  file.directory:
-    - user: {% if d.user is defined %} {{ d.user }} {% else %} {{ user }} {% endif %}
-    - group: {% if d.group is defined %} {{ d.group }} {% else %} {{ user }} {% endif %}
-    - mode: {% if d.mode is defined %} {{ d.mode }} {% else %} 0755 {% endif %}
-    - makedirs: True
-{% endfor %}
+k8s_dirs:
+  sugfile.directories:
+    - dirs: {{ pillar['k8s']['dirs'] }}
 
-# zsh completions
-{% for c in pillar['k8s']['zsh_completions'] %}
-{{ c }}:
-  cmd.run:
+k8s_zsh_completions:
+  sugcmd.zsh_completions:
+    - completions: {{ pillar['k8s']['zsh_completions'] }}
     - require:
-        - pkg: k8s_pkgs
-{% endfor %}
+      - pkg: k8s_pkgs
+
+k8s_gh_binaries:
+  sugbin.dwl_github_binaries:
+    - binaries: {{ pillar['k8s']['github_binaries'] }}

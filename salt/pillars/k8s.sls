@@ -9,10 +9,6 @@ k8s:
     - kustomize # Template-free customization of Kubernetes YAML manifests
     - k9s # TUI for managing Kubernetes clusters and pods
     - operator-sdk # SDK for building Kubernetes applications
-  # Defaults:
-  # - user: pillar['sugar']['user']
-  # - group: pillar['sugar']['user']
-  # - mode: 0755
   dirs:
     - { path: {{ home }}/.kube }
   zsh_completions:
@@ -29,3 +25,12 @@ k8s:
     - { name: influxdata, url: "https://helm.influxdata.com/" }
     - { name: ingress-nginx, url: "https://kubernetes.github.io/ingress-nginx" }
     - { name: prometheus-community, url: "https://prometheus-community.github.io/helm-charts" }
+  github_binaries:
+    - {
+        repo: "kubernetes-sigs/kind",
+        urlfmt: "https://github.com/kubernetes-sigs/kind/releases/download/{version}/kind-linux-amd64",
+      }
+    - {
+        repo: "GoogleContainerTools/skaffold",
+        urlfmt: "https://storage.googleapis.com/skaffold/releases/{version}/skaffold-linux-amd64",
+      }
