@@ -13,5 +13,5 @@ k8s_zsh_completions:
       - pkg: k8s_pkgs
 
 k8s_gh_binaries:
-  sugbin.dwl_github_binaries:
+  sugbin.dwl_gh_binaries:
     - binaries: {{ pillar['k8s']['github_binaries'] }}

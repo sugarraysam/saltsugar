@@ -28,9 +28,13 @@ k8s:
   github_binaries:
     - {
         repo: "kubernetes-sigs/kind",
-        urlfmt: "https://github.com/kubernetes-sigs/kind/releases/download/{version}/kind-linux-amd64",
+        urlfmt: "https://github.com/kubernetes-sigs/kind/releases/download/{tag}/kind-linux-amd64",
       }
     - {
         repo: "GoogleContainerTools/skaffold",
-        urlfmt: "https://storage.googleapis.com/skaffold/releases/{version}/skaffold-linux-amd64",
+        urlfmt: "https://github.com/GoogleContainerTools/skaffold/releases/download/{tag}/skaffold-linux-amd64",
+      }
+    - {
+        repo: "kubernetes-sigs/krew",
+        urlfmt: "https://github.com/kubernetes-sigs/krew/releases/download/{tag}/krew.tar.gz",
       }

@@ -1,7 +1,6 @@
 #!/bin/bash
 
 export BASE_PKGS=(
-    jq
     git
     vim
     salt

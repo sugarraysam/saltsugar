@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function usage() {
-    echo >&2 "usage ${0}: (sandbox | prod) STATE"
+    echo >&2 "usage ${0}: (sandbox | prod) (STATE | highstate)"
     echo >&2 "Exiting."
     exit 1
 }

@@ -38,10 +38,10 @@ def directories(name, dirs, **kwargs):
             results["comment"] = "\n".join(results["comment"])
             return results
 
-        # Success
-        results["result"] = True
-        results["comment"] = "\n".join(results["comment"])
-        return results
+    # Success
+    results["result"] = True
+    results["comment"] = "\n".join(results["comment"])
+    return results
 
 
 def symlink_dotfiles(name, dotfiles, **kwargs):
@@ -84,10 +84,10 @@ def symlink_dotfiles(name, dotfiles, **kwargs):
             results["comment"] = "\n".join(results["comment"])
             return results
 
-        # Success
-        results["result"] = True
-        results["comment"] = "\n".join(results["comment"])
-        return results
+    # Success
+    results["result"] = True
+    results["comment"] = "\n".join(results["comment"])
+    return results
 
 
 def remove_files(name, files, **kwargs):
@@ -105,7 +105,7 @@ def remove_files(name, files, **kwargs):
             results["comment"] = "\n".join(results["comment"])
             return results
 
-        # Success
-        results["result"] = True
-        results["comment"] = "\n".join(results["comment"])
-        return results
+    # Success
+    results["result"] = True
+    results["comment"] = "\n".join(results["comment"])
+    return results

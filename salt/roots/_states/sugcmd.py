@@ -18,7 +18,7 @@ def zsh_completions(name, completions, **kwargs):
             results["comment"] = "\n".join(results["comment"])
             return results
 
-        # Success
-        results["result"] = True
-        results["comment"] = "\n".join(results["comment"])
-        return results
+    # Success
+    results["result"] = True
+    results["comment"] = "\n".join(results["comment"])
+    return results

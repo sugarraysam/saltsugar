@@ -15,9 +15,8 @@ common:
     - { path: {{ home }}/dwl }
     - { path: {{ home }}/perso }
     - { path: {{ home }}/geek/test }
-    - { path: {{ home }}/.local/bin }
     - { path: {{ home }}/.backup/files }
-    - { path: {{ home }}/.gnupg, mode: 0700 }
+    - { path: {{ home }}/.gnupg, mode: "0700" }
     - { path: /etc/systemd/system/getty@tty1.service.d, user: root, group: root }
   dotfiles:
     - {
