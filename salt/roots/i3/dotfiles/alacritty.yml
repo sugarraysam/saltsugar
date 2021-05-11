@@ -1,0 +1,16 @@
+# $ fc-list (see available fonts)
+# Documentation:
+#   https://wiki.gentoo.org/wiki/Alacritty#Font_configuration
+#   https://wiki.archlinux.org/index.php/Alacritty#Font
+font:
+  normal:
+    family: Hack
+    style: Regular
+
+  bold:
+    family: Hack
+
+  italic:
+    family: Hack
+
+  size: 10

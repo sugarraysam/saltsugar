@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# Start the X Server & prevent bypassing screenlocker by switching terminals
+# https://wiki.archlinux.org/index.php/Xinit#xserverrc
+#
+# -nolisten local ==> prevent X server from listening on linux abstract socket (https://tstarling.com/blog/2016/06/x11-security-isolation/)
+# -nolisten tcp   ==> prevent X server from listening on outside network
+#
+exec /usr/bin/X -logverbose 3 -nolisten tcp -nolisten local "$@" vt$XDG_VTNR

@@ -15,30 +15,30 @@ $ make up
 - pre-commit config
 - merge all scenarios from archsugar
 
-| Scenario  | Migrated? | Notes                            |
-| --------- | --------- | -------------------------------- |
-| X         |           |                                  |
-| backup    |           |                                  |
-| base      |           |                                  |
-| blackarch |           |                                  |
-| cpp       |           |                                  |
-| devops    |           |                                  |
-| docker    |           |                                  |
-| firefox   |           |                                  |
-| go        |           |                                  |
-| i3        |           |                                  |
-| iptables  |           |                                  |
-| k8s       |           | Add $HOME/.kube/kind-config.yaml |
-| nodejs    |           |                                  |
-| nvim      |           |                                  |
-| pacman    |           |                                  |
-| python    |           |                                  |
-| ruby      |           |                                  |
-| rust      |           |                                  |
-| tmux      |           |                                  |
-| vbox      |           |                                  |
-| vscode    |           |                                  |
-| zsh       |           | add ~/.zshrc.d/pulseaudio.sh     |
+| Scenario  | Migrated? | Notes                        |
+| --------- | --------- | ---------------------------- |
+| X         | X         |                              |
+| backup    |           |                              |
+| base      |           |                              |
+| blackarch |           |                              |
+| cpp       | X         |                              |
+| devops    |           |                              |
+| docker    | X         |                              |
+| firefox   |           |                              |
+| go        | X         |                              |
+| i3        | X         |                              |
+| iptables  |           |                              |
+| k8s       | X         |                              |
+| nodejs    | X         |                              |
+| nvim      |           |                              |
+| pacman    |           |                              |
+| python    |           |                              |
+| ruby      |           |                              |
+| rust      |           |                              |
+| tmux      |           |                              |
+| vbox      |           |                              |
+| vscode    |           |                              |
+| zsh       |           | add ~/.zshrc.d/pulseaudio.sh |
 
 - `install.sh` script (required pkgs: salt, rsync, zsh, which, etc.)
 - install guide for arch linux (custom salt module?)

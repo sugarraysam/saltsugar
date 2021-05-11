@@ -9,8 +9,11 @@ k8s:
     - kustomize # Template-free customization of Kubernetes YAML manifests
     - k9s # TUI for managing Kubernetes clusters and pods
     - operator-sdk # SDK for building Kubernetes applications
-  dirs:
-    - { path: {{ home }}/.kube }
+  dotfiles:
+    - {
+        src: /srv/salt/k8s/dotfiles/kind-config.yaml,
+        dest: {{ home }}/.kube/kind-config.yaml,
+      }
   zsh_completions:
     - "helm completion zsh > /usr/share/zsh/site-functions/_helm"
     - "kubectl completion zsh > /usr/share/zsh/site-functions/_kubectl"
@@ -25,7 +28,7 @@ k8s:
     - { name: influxdata, url: "https://helm.influxdata.com/" }
     - { name: ingress-nginx, url: "https://kubernetes.github.io/ingress-nginx" }
     - { name: prometheus-community, url: "https://prometheus-community.github.io/helm-charts" }
-  github_binaries:
+  gh_binaries:
     - {
         repo: "kubernetes-sigs/kind",
         urlfmt: "https://github.com/kubernetes-sigs/kind/releases/download/{tag}/kind-linux-amd64",
@@ -37,4 +40,8 @@ k8s:
     - {
         repo: "kubernetes-sigs/krew",
         urlfmt: "https://github.com/kubernetes-sigs/krew/releases/download/{tag}/krew.tar.gz",
+      }
+    - {
+        repo: "kubernetes-sigs/kubebuilder",
+        urlfmt: "https://github.com/kubernetes-sigs/kubebuilder/releases/download/{tag}/kubebuilder_linux_amd64",
       }

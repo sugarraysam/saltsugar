@@ -63,10 +63,11 @@ def create_dir(name, user, group, **kwargs):
 def set_user_group_perms(name, user, group, **kwargs):
     d = os.path.dirname(name)
     _ = __states__["file.directory"](
-        name=name,
+        name=d,
         user=user,
         group=group,
-        mode="0755",
+        dir_mode="0755",
+        file_mode="0755",
         recurse=["user", "group", "mode"],
     )
 
@@ -80,9 +81,16 @@ def _get_kwargs_update_dict(b):
         "skip_verify": True,
     }
     if _is_archive(b):
+        res["force"] = True
+        # allow more than one top level directory
+        res["enforce_toplevel"] = False
+        res["enforce_ownership_on"] = os.path.dirname(
+            _get_dest(b)
+        )  # enforce permission on target dest dir
         res["options"] = _get_archive_opts(b)
+        res["overwrite"] = True
     else:
-        res["replace"] = True  # force replace
+        res["replace"] = True
     return res
 
 
@@ -101,7 +109,8 @@ def _get_dest(b):
 def _get_source_url(b):
     """urlfmt MUST have a {tag} section"""
     tag = _get_latest_tag(b)
-    return b["urlfmt"].format(tag=tag)
+    tag_no_v = tag[1:] if tag.startswith("v") else tag
+    return b["urlfmt"].format(tag=tag, tag_no_v=tag_no_v)
 
 
 def _get_latest_tag(b):

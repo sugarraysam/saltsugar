@@ -7,6 +7,7 @@ common:
     - gopass # The slightly more awesome standard unix password manager for teams
     - keychain # A front-end to ssh-agent, allowing one long-running ssh-agent process per system, rather than per login
     - pinentry # Collection of simple PIN or passphrase entry dialogs which utilize the Assuan protocol
+    - prettier # An opinionated code formatter for JS, JSON, CSS, YAML and much more
     - shellcheck # Shell script analysis tool (required by VScode extension)
     - shfmt # Format shell programs (required by VScode extension)
     - tldr # Command line client for tldr, a collection of simplified and community-driven man pages.
@@ -20,19 +21,19 @@ common:
     - { path: /etc/systemd/system/getty@tty1.service.d, user: root, group: root }
   dotfiles:
     - {
-        src: /srv/salt/common/dotfiles/user/bible,
+        src: /srv/salt/common/dotfiles/bible,
         dest: {{ home }}/geek/bible,
       }
     - {
-        src: /srv/salt/common/dotfiles/user/gpg-agent.conf,
+        src: /srv/salt/common/dotfiles/gpg-agent.conf,
         dest: {{ home }}/.gnupg/gpg-agent.conf,
       }
     - {
-        src: /srv/salt/common/dotfiles/user/gopass-config.yml,
+        src: /srv/salt/common/dotfiles/gopass-config.yml,
         dest: {{ home }}/.config/gopass/config.yml,
       }
     - {
-        src: /srv/salt/common/dotfiles/user/ssh_config,
+        src: /srv/salt/common/dotfiles/ssh_config,
         dest: {{ home }}/.ssh/config,
       }
     - {
