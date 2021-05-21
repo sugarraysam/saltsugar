@@ -14,7 +14,7 @@ function pacmanInit() {
     pacman-key --populate archlinux
     pacman -Syy --noconfirm
     pacman -S --noconfirm --needed archlinux-keyring
-    pacman -Su --noconfirm --needed pacman
+    pacman -S --noconfirm --needed pacman
 }
 
 function installBasePkgs() {

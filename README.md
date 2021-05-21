@@ -15,30 +15,30 @@ $ make up
 - pre-commit config
 - merge all scenarios from archsugar
 
-| Scenario  | Migrated? | Notes                                                                                               |
-| --------- | --------- | --------------------------------------------------------------------------------------------------- |
-| X         | X         |                                                                                                     |
-| backup    |           |                                                                                                     |
-| base      |           | Add yay from gh release ++ setup AUR, remove from blackarch pkg list, add user to "wireshark" group |
-| blackarch | X         |                                                                                                     |
-| cpp       | X         |                                                                                                     |
-| devops    |           |                                                                                                     |
-| docker    | X         |                                                                                                     |
-| firefox   |           |                                                                                                     |
-| go        | X         |                                                                                                     |
-| i3        | X         |                                                                                                     |
-| iptables  |           |                                                                                                     |
-| k8s       | X         |                                                                                                     |
-| nodejs    | X         |                                                                                                     |
-| nvim      |           |                                                                                                     |
-| pacman    |           |                                                                                                     |
-| python    |           |                                                                                                     |
-| ruby      |           |                                                                                                     |
-| rust      |           |                                                                                                     |
-| tmux      |           |                                                                                                     |
-| vbox      |           |                                                                                                     |
-| vscode    |           |                                                                                                     |
-| zsh       |           | add ~/.zshrc.d/pulseaudio.sh                                                                        |
+| Scenario  | Migrated? | Notes                        |
+| --------- | --------- | ---------------------------- |
+| X         | X         |                              |
+| backup    |           |                              |
+| common    | X         |                              |
+| blackarch | X         |                              |
+| cpp       | X         |                              |
+| devops    |           |                              |
+| docker    | X         |                              |
+| firefox   |           |                              |
+| go        | X         |                              |
+| i3        | X         |                              |
+| iptables  | X         |                              |
+| k8s       | X         |                              |
+| nodejs    | X         |                              |
+| nvim      | X         |                              |
+| pacman    | X         | Merged in "common"           |
+| python    |           |                              |
+| ruby      |           |                              |
+| rust      |           |                              |
+| tmux      |           |                              |
+| vbox      |           |                              |
+| vscode    |           |                              |
+| zsh       |           | add ~/.zshrc.d/pulseaudio.sh |
 
 - `install.sh` script (required pkgs: salt, rsync, zsh, which, etc.)
 - install guide for arch linux (custom salt module?)

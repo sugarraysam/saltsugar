@@ -2,15 +2,51 @@
 
 common:
   pkgs:
+    - arch-install-scripts # Scripts to aid in installing Arch Linux (genfstab, pacstrap, arch-chroot)
+    - asp # Arch Linux build source file management tool (retrieve PKGBUILD)
+    - bat # Cat clone with syntax highlighting and git integration
+    - calibre # Ebook management application (experimental python3 port)
+    - cdrtools # Original cdrtools supporting CD, DVD and BluRay burning (provides mkisofs)
+    - chromium # A web browser built for speed, simplicity, and security
+    - cowsay # Configurable talking cow (and a few other creatures)
+    - dkms # Dynamic Kernel Modules System
+    - fd # Simple, fast and user-friendly alternative to find (written in Rust)
+    - feh # Fast and light imlib2-based image viewer
+    - fzf # Command-line fuzzy finder
     - git # the fast distributed version control system
     - gnupg # Complete and free implementation of the OpenPGP
     - gopass # The slightly more awesome standard unix password manager for teams
+    - htop # Interactive process viewer
+    - httpie # cURL for humans
+    - jq # Command-line JSON processor
     - keychain # A front-end to ssh-agent, allowing one long-running ssh-agent process per system, rather than per login
+    - ldns # Fast DNS library supporting recent RFCs (provides 'drill')
+    - libreoffice-fresh # LibreOffice branch which contains new features and program enhancements
+    - lsd # Modern ls with a lot of pretty colors and awesome icons (written in Rust)
+    - lsof # Lists open files for running Unix processes
+    - ltrace # Tracks runtime library calls in dynamically linked programs
+    - namcap # A Pacman package analyzer
+    - networkmanager-openconnect # NetworkManager VPN plugin for OpenConnect
+    - nmap # Utility for network discovery and security auditing
+    - okular # Document Viewer (pdf)
+    - parallel # A shell tool for executing jobs in parallel
     - pinentry # Collection of simple PIN or passphrase entry dialogs which utilize the Assuan protocol
-    - prettier # An opinionated code formatter for JS, JSON, CSS, YAML and much more
-    - shellcheck # Shell script analysis tool (required by VScode extension)
-    - shfmt # Format shell programs (required by VScode extension)
+    - ripgrep # A search tool that combines the usability of ag with the raw speed of grep
+    - squashfs-tools # Tools for squashfs, a highly compressed read-only filesystem for Linux
+    - strace # A diagnostic, debugging and instructional userspace tracer
+    - tigervnc # Suite of VNC servers and clients. Based on the VNC 4 branch of TightVNC.
+    - tldr # Command line client for tldr, a collection of simplified and community-driven man pages
     - tldr # Command line client for tldr, a collection of simplified and community-driven man pages.
+    - traceroute # Tracks the route taken by packets over an IP network
+    - tree # A directory listing program displaying a depth indented list of files
+    - unzip # For extracting and viewing files in .zip archives
+    - usbutils # USB Device Utilities (provides 'lsusb')
+    - util-linux # Miscellaneous system utilities for Linux (lsblk, rfkill, etc.)
+    - vlc # Multi-platform MPEG, VCD/DVD, and DivX player
+    - wireshark-cli # Network traffic and protocol analyzer/sniffer - CLI tools and data files
+    - wireshark-qt # Network traffic and protocol analyzer/sniffer - Qt GUI
+    - xournalpp # Handwriting notetaking software with PDF annotation support
+    - zip # Compressor/archiver for creating and modifying zipfiles
   dirs:
     - { path: {{ home }}/opt }
     - { path: {{ home }}/dwl }
@@ -61,3 +97,7 @@ common:
     - { name: branch.autosetuprebase, value: always }
     - { name: advice.addIgnoredFile, value: false }
     - { name: pull.rebase, value: false }
+  groups:
+    - uucp
+    - wheel
+    - wireshark

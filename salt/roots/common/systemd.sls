@@ -9,6 +9,7 @@ autologin_tmpl:
     - name: /etc/systemd/system/getty@tty1.service.d/autologin.conf
     - source: salt://common/templates/autologin.conf.jinja
     - template: jinja
+    - makedirs: True
 
 getty_svc:
   service.running:

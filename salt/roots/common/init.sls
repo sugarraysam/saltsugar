@@ -1,5 +1,6 @@
 include:
   - .systemd
+  - .pacman
 
 common_pkgs:
   pkg.installed:
@@ -41,3 +42,10 @@ git_cfg_{{ cfg.name }}:
     - require:
       - pkg: common_pkgs
 {% endfor %}
+
+add_user_to_groups:
+  user.present:
+    - name: {{ grains['sugar']['user'] }}
+    - groups: {{ pillar['common']['groups'] }}
+    - require:
+      - pkg: common_pkgs
