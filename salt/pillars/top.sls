@@ -1,5 +1,6 @@
 base:
   '*':
+    - blackarch
     - common
     - cpp
     - docker

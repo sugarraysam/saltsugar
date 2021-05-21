@@ -26,7 +26,7 @@ def main(grains):
     # User
     sugar["user"] = _user(grains)
     sugar["user_home"] = _user_home(grains)
-    sugar["user_groups"] = ["uucp", "wheel", "wireshark"]
+    sugar["user_groups"] = ["uucp", "wheel"]
 
     # Base
     sugar["timezone"] = "America/Chicago"
