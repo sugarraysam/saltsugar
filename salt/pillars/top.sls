@@ -10,4 +10,6 @@ base:
     - k8s
     - nodejs
     - nvim
+    - python
+    - ruby
     - X

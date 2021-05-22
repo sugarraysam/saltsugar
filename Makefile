@@ -1,6 +1,9 @@
 TARGETS := validate up status destroy deploy
 .PHONY: $(TARGETS)
 
+export TARGET ?= prod
+export STATE ?= highstate
+
 validate:
 	@vagrant validate
 
@@ -13,6 +16,8 @@ status: validate
 destroy:
 	@vagrant destroy --force
 
-# Copy files to current machine + run highstate
+# Copy files to local machine + run highstate
+# Can override state to run with:
+#	$ TARGET=[prod|sandbox] STATE=<state> make deploy
 deploy:
-	@sudo ./scripts/run.sh prod highstate
+	@sudo -E ./scripts/run.sh

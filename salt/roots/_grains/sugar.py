@@ -1,4 +1,5 @@
 # vi: ft=python
+import os
 import pwd
 
 
@@ -19,6 +20,25 @@ def _user_home(g):
     return f"/home/{_user(g)}"
 
 
+def _extra_path(g):
+    """Return augmented path to use as env in custom commands."""
+    home = _user_home(g)
+    return ":".join(
+        [
+            # python + custom
+            os.path.join(home, ".local/bin"),
+            # go
+            os.path.join(home, ".go/bin"),
+            # nodejs
+            os.path.join(home, ".node_modules/bin"),
+            # rust
+            os.path.join(home, ".cargo/bin"),
+            # k8s krew
+            os.path.join(home, ".krew/bin"),
+        ]
+    )
+
+
 def main(grains):
     sugar = {}
     sugar["is_sandbox"] = _is_sandbox()
@@ -26,6 +46,7 @@ def main(grains):
     # User
     sugar["user"] = _user(grains)
     sugar["user_home"] = _user_home(grains)
+    sugar["extra_path"] = _extra_path(grains)
 
     # Base
     sugar["timezone"] = "America/Chicago"

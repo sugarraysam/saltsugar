@@ -1,7 +1,9 @@
 #!/bin/bash
 
 function usage() {
-    echo >&2 "usage ${0}: (sandbox | prod) (STATE | highstate)"
+    echo >&2 "usage ${0}: [TARGET] [STATE]"
+    echo >&2 "    - TARGET: sandbox, prod"
+    echo >&2 "    - STATE:  highstate, <state>"
     echo >&2 "Exiting."
     exit 1
 }
@@ -44,25 +46,38 @@ function rsyncFiles() {
         --exclude "*.slsc" "${PWD}/salt/pillars/." /srv/pillar
 }
 
+function applyState() {
+    target="${1}"
+    state="${2}"
+    echo "Running state ${state} in target ${target}..."
+
+    if [ "${state}" == "highstate" ]; then
+        # run a highstate
+        salt-call --local state.apply
+    else
+        salt-call --local state.apply "${state}"
+    fi
+}
+
 ###
 ### Run
 ###
 checkIsRoot
-if [ "$#" -eq 2 ]; then
-    env="${1}"
+
+if [ "$#" -eq 0 ]; then
+    # Get STATE and TARGET from environment
+    target="${TARGET:-sandbox}"
+    state="${STATE:-highstate}"
+elif [ "$#" -eq 2 ]; then
+    # Can also use arguments
+    target="${1}"
     state="${2}"
 else
     usage
 fi
 
 installDeps
-[[ "${env}" == "prod" ]] && rsyncFiles
+[[ "${target}" == "prod" ]] && rsyncFiles
 
 syncDynamicModules
-
-if [ "${state}" == "highstate" ]; then
-    # run a highstate
-    salt-call --local state.apply
-else
-    salt-call --local state.apply "${state}"
-fi
+applyState "${target}" "${state}"

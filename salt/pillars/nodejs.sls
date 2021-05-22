@@ -8,8 +8,3 @@ nodejs:
     - npm # A package manager for javascript
   dirs:
     - { path: {{ npm_config_prefix }} }
-  cmds:
-    - {
-        id: "install_npm",
-        cmd: "npm -g install npm", # a package manager for JavaScript
-      }
