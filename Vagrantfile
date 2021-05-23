@@ -18,16 +18,7 @@ Vagrant.configure('2') do |config|
       vb.name = 'sandbox'
     end
 
-    # Salt masterless
-    sandbox.vm.synced_folder './salt/roots/', '/srv/salt/'
-    sandbox.vm.synced_folder './salt/pillars/', '/srv/pillar/'
-
-    # Install helper script run.sh
-    sandbox.vm.provision 'file', source: './scripts/run.sh', destination: '/home/vagrant/run.sh'
-    sandbox.vm.provision 'shell', inline: 'chmod +x /home/vagrant/run.sh'
-
-    # Install salt and upload minion config
-    sandbox.vm.provision 'file', source: './salt/minion', destination: '/tmp/minion'
+    # Install salt and do minimal provisioning
     sandbox.vm.provision 'shell', path: './scripts/sandbox.sh'
   end
 end

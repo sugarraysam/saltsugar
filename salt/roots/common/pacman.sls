@@ -10,5 +10,5 @@ remove_orphan_packages:
 enable_pacman_colors:
   file.uncomment:
     - name: /etc/pacman.conf
-    - regex: "^#Color.*$"
+    - regex: "Color.*$"
     - char: "#"

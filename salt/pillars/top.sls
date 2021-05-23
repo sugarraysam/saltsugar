@@ -12,4 +12,6 @@ base:
     - nvim
     - python
     - ruby
+    - rust
+    - tmux
     - X

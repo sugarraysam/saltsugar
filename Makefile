@@ -1,7 +1,6 @@
 TARGETS := validate up status destroy deploy
 .PHONY: $(TARGETS)
 
-export TARGET ?= prod
 export STATE ?= highstate
 
 validate:
@@ -18,6 +17,6 @@ destroy:
 
 # Copy files to local machine + run highstate
 # Can override state to run with:
-#	$ TARGET=[prod|sandbox] STATE=<state> make deploy
+#	$ STATE=[ highstate | <state> ] make deploy
 deploy:
 	@sudo -E ./scripts/run.sh

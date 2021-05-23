@@ -34,8 +34,8 @@ $ make up
 | pacman    | X         | Merged in "common"                                                   |
 | python    | X         |                                                                      |
 | ruby      | X         |                                                                      |
-| rust      |           |                                                                      |
-| tmux      |           |                                                                      |
+| rust      | X         |                                                                      |
+| tmux      | X         |                                                                      |
 | vbox      |           |                                                                      |
 | vscode    |           |                                                                      |
 | zsh       |           | add ~/.zshrc.d/pulseaudio.sh, write fzf plugins/scripts              |

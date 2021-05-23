@@ -1,9 +1,8 @@
 #!/bin/bash
 
 function usage() {
-    echo >&2 "usage ${0}: [TARGET] [STATE]"
-    echo >&2 "    - TARGET: sandbox, prod"
-    echo >&2 "    - STATE:  highstate, <state>"
+    echo >&2 "usage ${0}: [STATE]"
+    echo >&2 "    -> STATE:  highstate, <state>"
     echo >&2 "Exiting."
     exit 1
 }
@@ -39,7 +38,7 @@ function rsyncFiles() {
     echo "Copying files to /srv/salt and /srv/pillar..."
     mkdir -p /srv/salt
     mkdir -p /srv/pillar
-    cp salt/minion /etc/salt/minion
+    cp "${PWD}/salt/minion" /etc/salt/minion
     rsync -aq --no-owner --no-group --no-perms --chmod=ugo=rwX --copy-unsafe-links --delete \
         --exclude "*.slsc" "${PWD}/salt/roots/." /srv/salt
     rsync -aq --no-owner --no-group --no-perms --chmod=ugo=rwX --copy-unsafe-links --delete \
@@ -47,9 +46,8 @@ function rsyncFiles() {
 }
 
 function applyState() {
-    target="${1}"
-    state="${2}"
-    echo "Running state ${state} in target ${target}..."
+    state="${1}"
+    echo "Running state ${state}..."
 
     if [ "${state}" == "highstate" ]; then
         # run a highstate
@@ -65,19 +63,14 @@ function applyState() {
 checkIsRoot
 
 if [ "$#" -eq 0 ]; then
-    # Get STATE and TARGET from environment
-    target="${TARGET:-sandbox}"
     state="${STATE:-highstate}"
-elif [ "$#" -eq 2 ]; then
-    # Can also use arguments
-    target="${1}"
-    state="${2}"
+elif [ "$#" -eq 1 ]; then
+    state="${1}"
 else
     usage
 fi
 
 installDeps
-[[ "${target}" == "prod" ]] && rsyncFiles
-
+rsyncFiles
 syncDynamicModules
-applyState "${target}" "${state}"
+applyState "${state}"

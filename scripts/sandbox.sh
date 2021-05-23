@@ -2,6 +2,7 @@
 
 export BASE_PKGS=(
     git
+    make
     vim
     salt
     which
@@ -23,13 +24,16 @@ function installBasePkgs() {
     done
 }
 
-function copyEtcMinion() {
-    mkdir -p /etc/salt/
-    cp /tmp/minion /etc/salt/minion
-}
-
 function configureZsh() {
     chsh --shell /usr/bin/zsh vagrant
+}
+
+function setWorkdir() {
+    for f in .zprofile .bash_profile; do
+        path="/home/vagrant/${f}"
+        echo "cd /vagrant" >>${path}
+        chown vagrant:vagrant ${path}
+    done
 }
 
 ###
@@ -37,5 +41,5 @@ function configureZsh() {
 ###
 pacmanInit
 installBasePkgs
-copyEtcMinion
 configureZsh
+setWorkdir
