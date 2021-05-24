@@ -1,8 +1,9 @@
 #!/bin/bash
 
 function usage() {
-    echo >&2 "usage ${0}: [STATE]"
-    echo >&2 "    -> STATE:  highstate, <state>"
+    echo >&2 "usage ${0}: [ACTION] [STATE]"
+    echo >&2 "    -> ACTION:  deploy, <action>"
+    echo >&2 "    -> STATE:   highstate, <state>"
     echo >&2 "Exiting."
     exit 1
 }
@@ -63,9 +64,11 @@ function applyState() {
 checkIsRoot
 
 if [ "$#" -eq 0 ]; then
+    action="${ACTION:-deploy}"
     state="${STATE:-highstate}"
-elif [ "$#" -eq 1 ]; then
-    state="${1}"
+elif [ "$#" -eq 2 ]; then
+    action="${1}"
+    state="${2}"
 else
     usage
 fi
@@ -73,4 +76,4 @@ fi
 installDeps
 rsyncFiles
 syncDynamicModules
-applyState "${state}"
+[[ "${action}" == "deploy" ]] && applyState "${state}"

@@ -1,6 +1,7 @@
 # vi: ft=python
 import os
 import pwd
+import re
 
 
 def _is_sandbox():
@@ -39,6 +40,16 @@ def _extra_path(g):
     )
 
 
+def _vtx_enabled(grains):
+    """Detect if system supports VTx using /proc/cpuinfo."""
+    regex = re.compile("svm|vtx")
+    with open("/proc/cpuinfo") as f:
+        for line in f:
+            if regex.search(line) is not None:
+                return True
+    return False
+
+
 def main(grains):
     sugar = {}
     sugar["is_sandbox"] = _is_sandbox()
@@ -48,10 +59,11 @@ def main(grains):
     sugar["user_home"] = _user_home(grains)
     sugar["extra_path"] = _extra_path(grains)
 
-    # Base
+    # General
     sugar["timezone"] = "America/Chicago"
     sugar["hostname"] = "htp"
     sugar["keymap"] = "us"
+    sugar["vtx_enabled"] = _vtx_enabled(grains)
 
     # Git
     sugar["git_username"] = "sugarraysam"

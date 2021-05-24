@@ -15,3 +15,7 @@ base:
     - rust
     - tmux
     - X
+
+  'sugar:vtx_enabled:True':
+    - match: grain
+    - vbox

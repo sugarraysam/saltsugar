@@ -36,7 +36,7 @@ $ make up
 | ruby      | X         |                                                                      |
 | rust      | X         |                                                                      |
 | tmux      | X         |                                                                      |
-| vbox      |           |                                                                      |
+| vbox      | X         |                                                                      |
 | vscode    |           |                                                                      |
 | zsh       |           | add ~/.zshrc.d/pulseaudio.sh, write fzf plugins/scripts              |
 

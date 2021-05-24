@@ -1,6 +1,7 @@
 TARGETS := validate up status destroy deploy
 .PHONY: $(TARGETS)
 
+export ACTION ?= deploy
 export STATE ?= highstate
 
 validate:
@@ -20,3 +21,7 @@ destroy:
 #	$ STATE=[ highstate | <state> ] make deploy
 deploy:
 	@sudo -E ./scripts/run.sh
+
+# Simply copy files but don't execute a highstate
+rsync:
+	@ACTION=rsync sudo -E ./scripts/run.sh

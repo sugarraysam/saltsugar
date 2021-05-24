@@ -14,4 +14,5 @@ base:
     - ruby
     - rust
     - tmux
+    - vbox
     - X
