@@ -10,4 +10,4 @@ pillar_roots:
     - /srv/pillar
 
 state_verbose: False
-state_output: changes
+state_output: mixed

@@ -22,7 +22,7 @@ $ make up
 | common    | X         |                                                                      |
 | blackarch | X         |                                                                      |
 | cpp       | X         |                                                                      |
-| devops    |           | merge in common?                                                     |
+| devops    | X         |                                                                      |
 | docker    | X         |                                                                      |
 | firefox   |           |                                                                      |
 | go        | X         |                                                                      |
@@ -37,7 +37,7 @@ $ make up
 | rust      | X         |                                                                      |
 | tmux      | X         |                                                                      |
 | vbox      | X         |                                                                      |
-| vscode    |           |                                                                      |
+| vscode    | X         | merged in devops                                                     |
 | zsh       |           | add ~/.zshrc.d/pulseaudio.sh, write fzf plugins/scripts              |
 
 - `install.sh` script (required pkgs: salt, rsync, zsh, which, etc.)

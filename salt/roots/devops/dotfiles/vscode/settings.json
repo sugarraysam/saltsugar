@@ -1,0 +1,79 @@
+{
+    // --- Go ---
+    // https://github.com/golang/vscode-go
+    "go.gopath": "/home/sugar/.go",
+    "go.toolsGopath": "/home/sugar/.go",
+    "go.useLanguageServer": true,
+    "go.formatTool": "goimports",
+    "go.lintTool": "golangci-lint",
+    "go.lintFlags": [
+        "--fast"
+    ],
+    "[go]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true,
+        },
+        // Optional: Disable snippets, as they conflict with completion ranking.
+        "editor.snippetSuggestions": "none",
+    },
+    "[go.mod]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true,
+        },
+    },
+    "gopls": {
+        // Add parameter placeholders when completing a function.
+        "usePlaceholders": true,
+        // If true, enable additional analyses with staticcheck.
+        // Warning: This will significantly increase memory usage.
+        "staticcheck": false,
+    },
+    // --- Python ---
+    "python.formatting.blackPath": "${env:HOME}/.local/bin/black",
+    "python.jediEnabled": false,
+    "python.formatting.provider": "black",
+    "python.pipenvPath": "${env:HOME}/.local/bin/pipenv",
+    // --- Docker ---
+    "[dockerfile]": {
+        "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+    },
+    // --- Settings Sync ---
+    "sync.gist": "c749cff0d48773ba01fc91b2050dfd55",
+    "sync.autoDownload": true,
+    "sync.autoUpload": true,
+    // --- General ---
+    "files.trimTrailingWhitespace": true,
+    "files.trimFinalNewlines": true,
+    "editor.formatOnSave": true,
+    "workbench.preferredDarkColorTheme": "Gruvbox Dark Medium",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "workbench.editor.enablePreview": false,
+    "window.zoomLevel": 1,
+    "workbench.startupEditor": "newUntitledFile",
+    "sync.removeExtensions": true,
+    "sync.forceDownload": false,
+    "editor.fontSize": 14,
+    "python.languageServer": "Microsoft",
+    "files.insertFinalNewline": true,
+    "editor.rulers": [
+        120
+    ],
+    "workbench.colorTheme": "Gruvbox Dark Medium",
+    // -- Protoc --
+    "protoc": {
+        "path": "/usr/bin/protoc",
+        "compile_on_save": false,
+        "options": [
+            "--proto_path=${workspaceRoot}/pb",
+        ]
+    },
+    "explorer.confirmDragAndDrop": false,
+    // File association
+    "files.associations": {
+        // ROS & Gazebo files
+        "*.world": "xml",
+        "*.launch": "xml",
+        "*.xacro": "xml",
+    },
+}

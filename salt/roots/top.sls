@@ -3,6 +3,7 @@ base:
     - blackarch
     - common
     - cpp
+    - devops
     - docker
     - go
     - iptables
