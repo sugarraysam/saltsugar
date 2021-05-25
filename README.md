@@ -40,6 +40,30 @@ $ make up
 | vscode    | X         | merged in devops                                                     |
 | zsh       |           | add ~/.zshrc.d/pulseaudio.sh, write fzf plugins/scripts              |
 
+# Bootstrap
+
+**Bootstrap**
+
+| Name           | Migrated | Notes |
+| -------------- | -------- | ----- |
+| partition.yml  | X        |       |
+| cryptsetup.yml |          |       |
+| mount.yml      |          |       |
+| pacstrap.yml   |          |       |
+| initramfs.yml  |          |       |
+| bootloader.yml |          |       |
+
+**Chroot**
+
+| Name          | Migrated | Notes |
+| ------------- | -------- | ----- |
+| clock.yml     |          |       |
+| languages.yml |          |       |
+| user.yml      |          |       |
+| pacman.yml    |          |       |
+| systemd.yml   |          |       |
+| swap.yml      |          |       |
+
 - `install.sh` script (required pkgs: salt, rsync, zsh, which, etc.)
 - install guide for arch linux (custom salt module?)
   -- inspect bootstrap + chroot stages ++ turn them in salt/bash scripts (easy-to-use)
@@ -49,3 +73,4 @@ $ make up
 
 - [Write custom state modules](https://docs.saltproject.io/en/latest/ref/states/writing.html)
 - [Cross calling execution modules](https://docs.saltproject.io/en/latest/ref/modules/index.html#cross-calling-execution-modules)
+- [Archlinux Installation Guide](https://wiki.archlinux.org/title/Installation_guide)

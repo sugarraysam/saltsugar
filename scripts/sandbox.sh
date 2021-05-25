@@ -1,15 +1,5 @@
 #!/bin/bash
 
-export BASE_PKGS=(
-    git
-    make
-    vim
-    salt
-    which
-    zsh
-    zsh-completions
-)
-
 function pacmanInit() {
     pacman-key --init
     pacman-key --populate archlinux
@@ -18,10 +8,17 @@ function pacmanInit() {
     pacman -S --noconfirm --needed pacman
 }
 
-function installBasePkgs() {
-    for p in "${BASE_PKGS[@]}"; do
-        pacman --noconfirm -S --needed "${p}"
-    done
+function installPacmanDeps() {
+    pkgs=(
+        git
+        make
+        vim
+        salt
+        which
+        zsh
+        zsh-completions
+    )
+    pacman --noconfirm -S --needed "${pkgs[@]}"
 }
 
 function configureZsh() {
@@ -40,6 +37,6 @@ function setWorkdir() {
 ### Run
 ###
 pacmanInit
-installBasePkgs
+installPacmanDeps
 configureZsh
 setWorkdir
