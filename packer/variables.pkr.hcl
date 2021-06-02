@@ -26,3 +26,9 @@ variable "bootstrap_disk" {
   default     = "/dev/sda"
   description = "Disk name to be formatted inside VM."
 }
+
+variable "bootstrap_luks" {
+  type        = string
+  default     = "saltsugar"
+  description = "LUKS password to unlock root partition."
+}

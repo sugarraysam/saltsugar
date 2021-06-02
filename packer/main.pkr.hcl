@@ -36,23 +36,39 @@ source "virtualbox-iso" "archsugar" {
 build {
   sources = ["sources.virtualbox-iso.archsugar"]
 
-  # Copy bootstrap.sh script to /root/bootstrap.sh
-  /*provisioner "file" {*/
-  /*sources = [*/
-  /*"${path.cwd}/scripts/bootstrap.sh",*/
-  /*]*/
-  /*destination = "/root/"*/
-  /*}*/
-
-  # Upload and execute script
+  # Allow unprivileged user to write file in /root dir
   provisioner "shell" {
-    script            = "scripts/bootstrap.sh"
-    expect_disconnect = false # TODO set to true
-    environment_vars = [
-      "BOOTSTRAP_DISK=${var.bootstrap_disk}",
+    inline = [
+      "mkdir /root/scripts/",
+      "chmod -R 0777 /root"
     ]
   }
 
+  # Copy Makefile and bootstrap scripts
+  provisioner "file" {
+    sources     = ["${path.cwd}/Makefile"]
+    destination = "/root/Makefile"
+  }
+
+  provisioner "file" {
+    sources = [
+      "${path.cwd}/scripts/bootstrap.sh",
+      "${path.cwd}/scripts/chroot.sh",
+    ]
+    destination = "/root/scripts/"
+  }
+
+  # Bootstrap VM
+  provisioner "shell" {
+    inline            = ["cd /root && make bootstrap"]
+    expect_disconnect = false # TODO set to true when reboot is enabled
+    environment_vars = [
+      "BOOTSTRAP_DISK=${var.bootstrap_disk}",
+      "BOOTSTRAP_LUKS=${var.bootstrap_luks}",
+    ]
+  }
+
+  # TODO export a vagrant box
   /*post-processor "vagrant" {*/
   /*provider_override = "virtualbox"*/
   /*output            = "archsugar_${local.today}.box"*/

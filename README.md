@@ -14,6 +14,13 @@ $ make up
 
 - pre-commit config
 - merge all scenarios from archsugar
+- hadolint error
+
+```
+  [ERROR ] Binary is missing either `repo` or `urlfmt`: OrderedDict([('name', 'hadolint/hadolint'), ('urlfmt', 'https://github.com/hadolint/hadolint/releases/download/{tag}/hadolint-Linux-x86_64')]). Skipping.
+```
+
+- make sure kernel (pacman -Syu) runs at very end of highstate ++ only prompt for reboot if /lib/modules/$(uname -r) dont exist (meaning kernel was upgraded)
 
 | Scenario  | Migrated? | Notes                                                                |
 | --------- | --------- | -------------------------------------------------------------------- |
@@ -42,27 +49,27 @@ $ make up
 
 # Bootstrap
 
-**Bootstrap**
+**Bootstrap - Success**
 
 | Name           | Migrated | Notes |
 | -------------- | -------- | ----- |
 | partition.yml  | X        |       |
-| cryptsetup.yml |          |       |
-| mount.yml      |          |       |
-| pacstrap.yml   |          |       |
-| initramfs.yml  |          |       |
-| bootloader.yml |          |       |
+| cryptsetup.yml | X        |       |
+| mount.yml      | X        |       |
+| pacstrap.yml   | X        |       |
 
-**Chroot**
+**Chroot - TODO finish writing this**
 
-| Name          | Migrated | Notes |
-| ------------- | -------- | ----- |
-| clock.yml     |          |       |
-| languages.yml |          |       |
-| user.yml      |          |       |
-| pacman.yml    |          |       |
-| systemd.yml   |          |       |
-| swap.yml      |          |       |
+| Name           | Migrated | Notes                                        |
+| -------------- | -------- | -------------------------------------------- |
+| initramfs.yml  | X        | moved from bootstrap                         |
+| clock.yml      |          |                                              |
+| languages.yml  |          |                                              |
+| user.yml       |          | clone saltsugar to /home/sugar/opt/saltsugar |
+| pacman.yml     |          | keyring + mirrorlist already copied          |
+| systemd.yml    |          |                                              |
+| swap.yml       |          |                                              |
+| bootloader.yml |          |                                              |
 
 - `install.sh` script (required pkgs: salt, rsync, zsh, which, etc.)
 - install guide for arch linux (custom salt module?)
