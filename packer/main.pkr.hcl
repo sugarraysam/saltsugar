@@ -14,7 +14,6 @@ source "virtualbox-iso" "archsugar" {
   http_directory   = "${path.root}/http"
   output_directory = "${path.cwd}/_build"
 
-
   # EFI enabled VM - https://www.packer.io/docs/builders/virtualbox/iso#creating-an-efi-enabled-vm
   hard_drive_interface = "sata"
   iso_interface        = "sata"
@@ -25,8 +24,9 @@ source "virtualbox-iso" "archsugar" {
   ssh_username = "root"
   ssh_password = "vagrant"
   ssh_timeout  = "1m"
+  # initial boot wait needs to be > 1m
   boot_command = [
-    "<enter><wait1m>",
+    "<enter><wait2m>",
     "/usr/bin/curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/setup.sh<enter><wait5>",
     "/usr/bin/bash setup.sh<enter><wait5>",
   ]
@@ -61,16 +61,16 @@ build {
   # Bootstrap VM
   provisioner "shell" {
     inline            = ["cd /root && make bootstrap"]
-    expect_disconnect = false # TODO set to true when reboot is enabled
+    expect_disconnect = false # even though machine reboots, it will not come back online
     environment_vars = [
       "BOOTSTRAP_DISK=${var.bootstrap_disk}",
       "BOOTSTRAP_LUKS=${var.bootstrap_luks}",
+      "BOOTSTRAP_TZ=${var.bootstrap_tz}",
+      "BOOTSTRAP_HOSTNAME=${var.bootstrap_hostname}",
+      "BOOTSTRAP_SWAP_SIZE_MB=${var.bootstrap_swap_size_mb}",
+      "BOOTSTRAP_USER=${var.bootstrap_user}",
+      "BOOTSTRAP_USER_PASSWD=${var.bootstrap_user_passwd}",
+      "BOOTSTRAP_ROOT_PASSWD=${var.bootstrap_root_passwd}",
     ]
   }
-
-  # TODO export a vagrant box
-  /*post-processor "vagrant" {*/
-  /*provider_override = "virtualbox"*/
-  /*output            = "archsugar_${local.today}.box"*/
-  /*}*/
 }

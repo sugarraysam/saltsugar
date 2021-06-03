@@ -9,8 +9,8 @@ Host gitlab.com
     AddKeysToAgent yes
 
 Host *
-    User sugarraysam
+    User sblaisdo
     IdentitiesOnly yes
-    IdentityFile ~/.ssh/sugarraysam.id_rsa
+    IdentityFile ~/.ssh/sblaisdo
     AddKeysToAgent yes
     ForwardAgent yes

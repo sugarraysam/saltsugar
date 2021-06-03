@@ -16,6 +16,7 @@ base:
     - rust
     - tmux
     - X
+    - zsh
 
   'sugar:vtx_enabled:True':
     - match: grain

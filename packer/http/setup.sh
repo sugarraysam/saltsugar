@@ -6,4 +6,4 @@ pacman -q -S --noconfirm --needed make
 
 # Setup ssh server so packer can connect to VM
 echo root:vagrant | chpasswd
-/usr/bin/systemctl start sshd.service
+systemctl --now enable sshd.service

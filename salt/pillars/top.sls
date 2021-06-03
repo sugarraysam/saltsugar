@@ -17,3 +17,4 @@ base:
     - tmux
     - vbox
     - X
+    - zsh

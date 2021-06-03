@@ -15,6 +15,7 @@ create_machine_folder:
     - name: {{ pillar['vbox']['machine_folder_path'] }}
     - user: {{ grains['sugar']['user'] }}
     - group: {{ grains['sugar']['user'] }}
+    - mode: 0775
 
 # CoW needs to be disabled where hard disk images will be stored because filesystem is btrfs
 # https://wiki.archlinux.org/index.php/QEMU#Creating_new_virtualized_system
