@@ -117,10 +117,12 @@ def _get_latest_tag(b):
     if b.get("tag") is not None:
         return b.get("tag")
 
-    with urlopen(f"https://api.github.com/repos/{b['repo']}/tags") as response:
+    with urlopen(
+        f"https://api.github.com/repos/{b['repo']}/releases/latest"
+    ) as response:
         body = response.read().decode("utf-8")
         body_json = json.loads(body)
-        return body_json[0]["name"]
+        return body_json["tag_name"]
 
 
 def _is_archive(b):

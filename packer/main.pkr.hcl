@@ -1,6 +1,6 @@
 source "virtualbox-iso" "archsugar" {
   guest_os_type        = "ArchLinux_64" # $ VBoxManage list ostypes
-  vm_name              = "archsugar_${local.today}"
+  vm_name              = var.bootstrap_vm_name
   disk_size            = var.disk_size
   cpus                 = var.cpus
   memory               = var.memory
@@ -65,6 +65,7 @@ build {
     environment_vars = [
       "BOOTSTRAP_DISK=${var.bootstrap_disk}",
       "BOOTSTRAP_LUKS=${var.bootstrap_luks}",
+      "BOOTSTRAP_DMNAME=${var.bootstrap_dmname}",
       "BOOTSTRAP_TZ=${var.bootstrap_tz}",
       "BOOTSTRAP_HOSTNAME=${var.bootstrap_hostname}",
       "BOOTSTRAP_SWAP_SIZE_MB=${var.bootstrap_swap_size_mb}",

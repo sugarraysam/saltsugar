@@ -22,6 +22,12 @@ variable "keep_registered" {
 }
 
 # Read BOOTSTRAP_* env vars
+variable "bootstrap_vm_name" {
+  type        = string
+  default     = env("BOOTSTRAP_VM_NAME")
+  description = "Name of the debug VM registered in VirtualBox."
+}
+
 variable "bootstrap_disk" {
   type        = string
   default     = env("BOOTSTRAP_DISK")
@@ -32,6 +38,12 @@ variable "bootstrap_luks" {
   type        = string
   default     = env("BOOTSTRAP_LUKS")
   description = "LUKS password to unlock root partition."
+}
+
+variable "bootstrap_dmname" {
+  type        = string
+  default     = env("BOOTSTRAP_DMNAME")
+  description = "Device mapper name for root partition /dev/mapper/<dmname>."
 }
 
 variable "bootstrap_tz" {

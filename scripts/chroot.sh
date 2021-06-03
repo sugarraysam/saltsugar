@@ -26,7 +26,7 @@ function setupUsers() {
     echo -e "${BOOTSTRAP_ROOT_PASSWD}\n${BOOTSTRAP_ROOT_PASSWD}" | passwd root
 
     cat >"/etc/sudoers.d/${BOOTSTRAP_USER}" <<EOF
-${BOOTSTRAP_USER} ALL=(ALL)
+${BOOTSTRAP_USER} ALL=(ALL) ALL
 Defaults:${BOOTSTRAP_USER}    env_keep += "HTTP_PROXY HTTPS_PROXY FTP_PROXY", timestamp_timeout = 15
 EOF
 }
@@ -118,6 +118,15 @@ function setupGrub() {
     fi
     # Install UEFI bootloader to /boot/EFI/GRUB/grubx64.efi
     grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+
+    # Set kernel parameters so GRUB can unlock encrypted root partition
+    # https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system#Configuring_the_boot_loader
+    # https://wiki.archlinux.org/title/Dm-crypt/System_configuration#Boot_loader
+    # https://wiki.archlinux.org/title/Kernel_parameters#GRUB
+    uuid=$(blkid -s UUID -o value ${ROOT_PART})
+    line="quiet splash cryptdevice=UUID=${uuid}:${BOOTSTRAP_DMNAME} root=/dev/mapper/${BOOTSTRAP_DMNAME}"
+    sed -i "s,^GRUB_CMDLINE_LINUX_DEFAULT=.*,GRUB_CMDLINE_LINUX_DEFAULT=\"${line}\"," /etc/default/grub
+    grub-mkconfig -o /boot/grub/grub.cfg
 }
 
 function cloneSaltSugar() {

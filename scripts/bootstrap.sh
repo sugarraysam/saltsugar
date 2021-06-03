@@ -46,7 +46,7 @@ function validateDisk() {
         exit 1
     elif [ ! -b "${BOOTSTRAP_DISK}" ]; then
         echo >&2 "Disk ${BOOTSTRAP_DISK} does not exist. Please select one of:"
-        lsblk -n o PATH >&2
+        lsblk -n -o PATH >&2
         exit 1
     fi
 }
@@ -90,22 +90,20 @@ function encryptDisk() {
     fi
     # Encrypting devices with cryptsetup
     # https://wiki.archlinux.org/title/Dm-crypt/Device_encryption#Encrypting_devices_with_cryptsetup
-    echo ${BOOTSTRAP_LUKS} >/dev/shm/luks
-    cryptsetup luksFormat ${ROOT_PART} /dev/shm/luks
-    cryptsetup --key-file=/dev/shm/luks open ${ROOT_PART} sugarcrypt
-    export CRYPT_PART=/dev/mapper/sugarcrypt
+    echo -n "${BOOTSTRAP_LUKS}" | cryptsetup luksFormat ${ROOT_PART} --key-file=-
+    echo -n "${BOOTSTRAP_LUKS}" | cryptsetup --key-file=- open ${ROOT_PART} ${BOOTSTRAP_DMNAME}
+    export CRYPT_PART=/dev/mapper/${BOOTSTRAP_DMNAME}
     echo "Exported CRYPT_PART=${CRYPT_PART}."
-    rm /dev/shm/luks
 }
 
 function mountFs() {
     echo "Mounting ${CRYPT_PART} + ${BOOT_PART}..."
     mkfs.btrfs ${CRYPT_PART}
-    mount -t btrfs ${CRYPT_PART} /mnt
+    mount ${CRYPT_PART} /mnt
 
     mkdir -p /mnt/boot
-    mkfs.vfat -F 32 ${BOOT_PART}
-    mount -t vfat ${BOOT_PART} /mnt/boot
+    mkfs.fat -F32 ${BOOT_PART}
+    mount ${BOOT_PART} /mnt/boot
 }
 
 # Pacstrap copies the host's:
@@ -125,19 +123,21 @@ function runPacstrap() {
         grub
         linux
         linux-firmware
+        make
         man
         mkinitcpio
         networkmanager
         openssh
         reflector
         sudo
+        util-linux
         vi
         vim
         xclip
         zsh
     )
     pacstrap -c /mnt "${pkgs[@]}"
-    genfstab -U -p /mnt >/mnt/etc/fstab
+    genfstab -U /mnt >>/mnt/etc/fstab
 }
 
 # Chroot does not see the file if placed in /tmp/

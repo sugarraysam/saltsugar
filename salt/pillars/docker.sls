@@ -7,6 +7,6 @@ docker:
     - docker-machine # Machine management for a container-centric world
   gh_binaries:
     - {
-        name: "hadolint/hadolint",
+        repo: "hadolint/hadolint",
         urlfmt: "https://github.com/hadolint/hadolint/releases/download/{tag}/hadolint-Linux-x86_64",
       }

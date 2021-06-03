@@ -5,15 +5,30 @@ TARGETS := help salt-sandbox salt bootstrap-test bootstrap rsync clean
 export ACTION ?= deploy
 export STATE ?= highstate
 
-# Packer/bootstrap default env
+###
+### Bootstrap/Packer default env
+###
+# Vbox VM name
+export BOOTSTRAP_VM_NAME ?= archsugar_$(shell date +%Y.%m.%d)
+# Disk to be partitioned
 export BOOTSTRAP_DISK ?= /dev/sda
+# Encrypted root partition password
 export BOOTSTRAP_LUKS ?= saltsugar
+# Device mapper name for root partition /dev/mapper/<dmname>
+export BOOTSTRAP_DMNAME ?= sugarcrypt
+# Timezone of system
 export BOOTSTRAP_TZ ?= America/Chicago
+# Hostname of system
 export BOOTSTRAP_HOSTNAME ?= htp
+# Size of /swapfile in MB
 export BOOTSTRAP_SWAP_SIZE_MB ?= 16384
+# Username for unprivileged user
 export BOOOTSTRAP_USER ?= sugar
+# Password for unprivileged user
 export BOOOTSTRAP_USER_PASSWD ?= sugar
+# Password for root
 export BOOOTSTRAP_ROOT_PASSWD ?= root
+
 
 help:
 	@echo "make [ salt-sandbox | salt | bootstrap-test | bootstrap | rsync | clean | help ]"
@@ -47,3 +62,4 @@ clean:
 	@echo "Removing $(FILES_TO_REMOVE)..."
 	@if [ -d "_build" ]; then rm -fr _build; fi
 	@vagrant destroy --force
+	-@vboxmanage unregistervm $(BOOTSTRAP_VM_NAME) --delete > /dev/null 2>&1
