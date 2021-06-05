@@ -1,3 +1,4 @@
+import copy
 import logging
 import os
 
@@ -13,7 +14,9 @@ def _create_dir(d, kwargs):
         mode    string
     }
     """
-    kwargs.update(
+    # Don't mess up kwargs for next states
+    kwargs2 = copy.deepcopy(kwargs)
+    kwargs2.update(
         {
             "name": d["path"],
             "user": d.get("user", __grains__["sugar"]["user"]),
@@ -22,7 +25,7 @@ def _create_dir(d, kwargs):
             "makedirs": True,
         }
     )
-    return __states__["file.directory"](**kwargs)
+    return __states__["file.directory"](**kwargs2)
 
 
 def directories(name, dirs, **kwargs):
@@ -77,12 +80,12 @@ def symlink_dotfiles(name, dotfiles, **kwargs):
             continue
 
         # first create directory otherwise permissions are messed up
-        d = {
+        parent_dir = {
             "path": os.path.dirname(d["dest"]),
             "user": d.get("user"),
             "group": d.get("group"),
         }
-        res = _create_dir(d)
+        res = _create_dir(parent_dir, kwargs)
         results["changes"].update(res["changes"])
         results["comment"].append(res["comment"])
         if not res["result"]:
