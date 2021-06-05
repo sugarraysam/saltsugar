@@ -23,11 +23,11 @@ export BOOTSTRAP_HOSTNAME ?= htp
 # Size of /swapfile in MB
 export BOOTSTRAP_SWAP_SIZE_MB ?= 16384
 # Username for unprivileged user
-export BOOOTSTRAP_USER ?= sugar
+export BOOTSTRAP_USER ?= sugar
 # Password for unprivileged user
-export BOOOTSTRAP_USER_PASSWD ?= sugar
+export BOOTSTRAP_USER_PASSWD ?= sugar
 # Password for root
-export BOOOTSTRAP_ROOT_PASSWD ?= root
+export BOOTSTRAP_ROOT_PASSWD ?= root
 
 help:
 	@echo "make [ salt-sandbox | salt | bootstrap-test | bootstrap | rsync | clean | help ]"
