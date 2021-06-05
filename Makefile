@@ -29,7 +29,6 @@ export BOOOTSTRAP_USER_PASSWD ?= sugar
 # Password for root
 export BOOOTSTRAP_ROOT_PASSWD ?= root
 
-
 help:
 	@echo "make [ salt-sandbox | salt | bootstrap-test | bootstrap | rsync | clean | help ]"
 	@echo "    salt-sandbox:     Create salt sandbox using vagrant."

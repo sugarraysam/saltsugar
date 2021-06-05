@@ -4,7 +4,29 @@ Salt configuration to manage an ArchLinux machine. Also includes bootstraping sc
 
 # Bootstrap
 
-TODO
+To bootstrap a new system, follow these instructions:
+
+```bash
+# Connect to your wifi
+$ iwctl
+[iwd] device list
+[iwd] station <device> scan
+[iwd] station <device> get-networks
+[iwd] station <device> connect <SSID>
+[iwd] exit
+
+# Install prerequisites
+$ pacman -Syy
+$ pacman -S make git vim
+
+# Clone repo
+$ cd /root
+$ git clone https://github.com/sugarraysam/saltsugar.git
+
+# Edit Makefile and bootstrap
+$ vim Makefile
+$ make bootstrap
+```
 
 # Salt
 
@@ -12,6 +34,7 @@ TODO
 
 # Roadmap
 
+- run make salt again, redirect and inspect output (> /file.out 2>&1)
 - does grub need a pacman hook after upgrade? kernel upgrade?
 - pre-commit config
 - make sure kernel (pacman -Syu) runs at very end of highstate ++ only prompt for reboot if /lib/modules/$(uname -r) dont exist (meaning kernel was upgraded)
