@@ -133,7 +133,7 @@ function cloneSaltSugar() {
     dest="/home/${BOOTSTRAP_USER}/opt/"
     mkdir -p "${dest}"
     git clone https://github.com/sugarraysam/saltsugar.git "${dest}/saltsugar"
-    chown -R "${BOOTSTRAP_USER}:${BOOTSTRAP_USER}" "${dest}/saltsugar"
+    chown -R "${BOOTSTRAP_USER}:${BOOTSTRAP_USER}" "${dest}" "${dest}/saltsugar"
 }
 
 ###

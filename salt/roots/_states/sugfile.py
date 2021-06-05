@@ -1,6 +1,28 @@
 import logging
+import os
 
 log = logging.getLogger(__name__)
+
+
+def _create_dir(d, kwargs):
+    """
+    type dir {
+        path    string [required]
+        user    string
+        group   string
+        mode    string
+    }
+    """
+    kwargs.update(
+        {
+            "name": d["path"],
+            "user": d.get("user", __grains__["sugar"]["user"]),
+            "group": d.get("group", __grains__["sugar"]["user"]),
+            "mode": d.get("mode", "0755"),
+            "makedirs": True,
+        }
+    )
+    return __states__["file.directory"](**kwargs)
 
 
 def directories(name, dirs, **kwargs):
@@ -20,16 +42,7 @@ def directories(name, dirs, **kwargs):
         if d.get("path") is None:
             log.error("Directory %s does not have a path argument", d)
             continue
-        kwargs.update(
-            {
-                "name": d["path"],
-                "user": d.get("user", __grains__["sugar"]["user"]),
-                "group": d.get("group", __grains__["sugar"]["user"]),
-                "mode": d.get("mode", "0755"),
-                "makedirs": True,
-            }
-        )
-        res = __states__["file.directory"](**kwargs)
+        res = _create_dir(d, kwargs)
         results["changes"].update(res["changes"])
         results["comment"].append(res["comment"])
 
@@ -63,6 +76,20 @@ def symlink_dotfiles(name, dotfiles, **kwargs):
             log.error("Dotfiles %s is missing either 'dest' or 'src'", d)
             continue
 
+        # first create directory otherwise permissions are messed up
+        d = {
+            "path": os.path.dirname(d["dest"]),
+            "user": d.get("user"),
+            "group": d.get("group"),
+        }
+        res = _create_dir(d)
+        results["changes"].update(res["changes"])
+        results["comment"].append(res["comment"])
+        if not res["result"]:
+            results["comment"] = "\n".join(results["comment"])
+            return results
+
+        # Create symlink
         kwargs.update(
             {
                 "name": d["dest"],

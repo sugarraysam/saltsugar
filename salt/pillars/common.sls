@@ -54,6 +54,7 @@ common:
     - { path: {{ home }}/geek/test }
     - { path: {{ home }}/.backup/files }
     - { path: {{ home }}/.gnupg, mode: "0700" }
+    - { path: {{ home }}/.cache }
     - { path: /etc/systemd/system/getty@tty1.service.d, user: root, group: root }
   dotfiles:
     - {

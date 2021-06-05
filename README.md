@@ -34,7 +34,7 @@ TODO
 
 # Roadmap
 
-- run make salt again, redirect and inspect output (> /file.out 2>&1)
+- refactor custom states, Result class with easier upgrade + error detection + logging ?
 - does grub need a pacman hook after upgrade? kernel upgrade?
 - pre-commit config
 - make sure kernel (pacman -Syu) runs at very end of highstate ++ only prompt for reboot if /lib/modules/$(uname -r) dont exist (meaning kernel was upgraded)

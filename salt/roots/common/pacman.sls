@@ -3,9 +3,8 @@ clean_pacman_cache:
     - name: pacman --noconfirm -q -Sc
 
 remove_orphan_packages:
-  cmd.run:
-    - unless: pacman -Qtdq # returns 1 if there are no orphan pkgs
-    - name: "pacman -Rns --noconfirm $(pacman -Qtdq)"
+  cmd.script:
+    - name: salt://common/scripts/remove_orphan_packages.sh
 
 enable_pacman_colors:
   file.uncomment:
