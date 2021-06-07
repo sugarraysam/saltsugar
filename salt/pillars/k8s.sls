@@ -14,6 +14,11 @@ k8s:
         src: /srv/salt/k8s/dotfiles/kind-config.yaml,
         dest: {{ home }}/.kube/kind-config.yaml,
       }
+    # Needs to be .yml, .yaml fails
+    - {
+        src: /srv/salt/k8s/dotfiles/k9s_skin.yml,
+        dest: {{ home }}/.k9s/skin.yml,
+      }
   zsh_completions:
     - "eksctl completion zsh > /usr/share/zsh/site-functions/_eksctl"
     - "helm completion zsh > /usr/share/zsh/site-functions/_helm"

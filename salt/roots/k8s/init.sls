@@ -32,6 +32,3 @@ update_helm_repos:
   cmd.run:
     - name: "helm repo update"
     - runas: {{ grains['sugar']['user'] }}
-
-
-# TODO install kubebuilder
