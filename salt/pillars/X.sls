@@ -25,3 +25,4 @@ X:
         src: /srv/salt/X/dotfiles/xserverrc,
         dest: {{ home }}/.xserverrc,
       }
+  xkbmodel_cmd: "setxkbmap -query | grep model | awk '{ print $2 }'"
