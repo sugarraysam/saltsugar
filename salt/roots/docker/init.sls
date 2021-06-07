@@ -6,10 +6,19 @@ docker_gh_binaries:
   sugbin.dwl_gh_binaries:
     - binaries: {{ pillar['docker']['gh_binaries'] }}
 
-add_user_to_docker_group:
-  user.present:
-    - name: {{ grains['sugar']['user'] }}
-    - groups:
-      - docker
+docker_group:
+  group.present:
+    - name: docker
+    - system: True
+    - members:
+      - {{ grains['sugar']['user'] }}
     - require:
       - pkg: docker_pkgs
+
+docker_svc:
+  service.running:
+    - name: docker
+    - enable: True
+    - require:
+      - pkg: docker_pkgs
+      - group: docker_group

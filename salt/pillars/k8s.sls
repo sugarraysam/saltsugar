@@ -15,9 +15,10 @@ k8s:
         dest: {{ home }}/.kube/kind-config.yaml,
       }
   zsh_completions:
-    - "helm completion zsh > /usr/share/zsh/site-functions/_helm"
-    - "kubectl completion zsh > /usr/share/zsh/site-functions/_kubectl"
     - "eksctl completion zsh > /usr/share/zsh/site-functions/_eksctl"
+    - "helm completion zsh > /usr/share/zsh/site-functions/_helm"
+    - "kind completion zsh > /usr/share/zsh/site-functions/_kind"
+    - "kubectl completion zsh > /usr/share/zsh/site-functions/_kubectl"
   helm_repositories:
     - { name: stable, url: "https://charts.helm.sh/stable" }
     - { name: bitnami, url: "https://charts.bitnami.com/bitnami" }

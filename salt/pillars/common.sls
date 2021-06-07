@@ -48,6 +48,7 @@ common:
     - wireshark-cli # Network traffic and protocol analyzer/sniffer - CLI tools and data files
     - wireshark-qt # Network traffic and protocol analyzer/sniffer - Qt GUI
     - xournalpp # Handwriting notetaking software with PDF annotation support
+    - yq # Command-line YAML/XML processor - jq wrapper for YAML/XML documents
     - zip # Compressor/archiver for creating and modifying zipfiles
   dirs:
     - { path: {{ home }}/opt }

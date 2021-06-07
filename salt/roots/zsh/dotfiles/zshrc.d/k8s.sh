@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export KUBE="${HOME}/.kube"
-export KUBECONFIG="${KUBE}/cov:${KUBE}/config"
+export KUBECONFIG="${KUBE}/config"
 
 # shortcut for kubectl + fix completions
 alias k="kubectl"
