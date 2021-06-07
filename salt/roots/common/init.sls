@@ -13,6 +13,8 @@ common_dirs:
 common_symlink_dotfiles:
   sugfile.symlink_dotfiles:
     - dotfiles: {{ pillar['common']['dotfiles'] }}
+    - require:
+      - sugfile: common_dirs
 
 common_remove_files:
   sugfile.remove_files:
@@ -49,3 +51,17 @@ add_user_to_groups:
     - groups: {{ pillar['common']['groups'] }}
     - require:
       - pkg: common_pkgs
+
+gnupg_keyring_permissions:
+  file.directory:
+    - name: {{ grains['sugar']['user_home'] }}/.gnupg
+    - user: {{ grains['sugar']['user'] }}
+    - group: {{ grains['sugar']['user'] }}
+    - file_mode: 0600
+    - dir_mode: 0700
+    - recurse:
+      - user
+      - group
+      - mode
+    - require:
+      - sugfile: common_symlink_dotfiles
