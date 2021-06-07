@@ -12,6 +12,7 @@ common:
     - dkms # Dynamic Kernel Modules System
     - fd # Simple, fast and user-friendly alternative to find (written in Rust)
     - feh # Fast and light imlib2-based image viewer
+    - firefox # Standalone web browser from mozilla.org
     - fzf # Command-line fuzzy finder
     - git # the fast distributed version control system
     - gnupg # Complete and free implementation of the OpenPGP
@@ -26,9 +27,10 @@ common:
     - lsof # Lists open files for running Unix processes
     - ltrace # Tracks runtime library calls in dynamically linked programs
     - namcap # A Pacman package analyzer
-    - networkmanager-openconnect # NetworkManager VPN plugin for OpenConnect
+    - networkmanager-openvpn # NetworkManager VPN plugin for OpenVPN
     - nmap # Utility for network discovery and security auditing
     - okular # Document Viewer (pdf)
+    - openvpn # An easy-to-use, robust and highly configurable VPN (Virtual Private Network)
     - parallel # A shell tool for executing jobs in parallel
     - pinentry # Collection of simple PIN or passphrase entry dialogs which utilize the Assuan protocol
     - ripgrep # A search tool that combines the usability of ag with the raw speed of grep
