@@ -85,7 +85,7 @@ def symlink_dotfiles(name, dotfiles, **kwargs):
             "user": d.get("user"),
             "group": d.get("group"),
         }
-        if not os.path.isdir(parent_dir):
+        if not os.path.isdir(parent_dir["path"]):
             res = _create_dir(parent_dir, kwargs)
             results["changes"].update(res["changes"])
             results["comment"].append(res["comment"])
