@@ -48,7 +48,7 @@ TODO
 | cpp       | X         |                                                                      |
 | devops    | X         |                                                                      |
 | docker    | X         |                                                                      |
-| firefox   |           |                                                                      |
+| firefox   |           | TODO                                                                 |
 | go        | X         |                                                                      |
 | i3        | X         |                                                                      |
 | iptables  | X         |                                                                      |
