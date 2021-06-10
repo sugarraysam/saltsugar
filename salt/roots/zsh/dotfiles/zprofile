@@ -17,5 +17,5 @@ fi
 
 # Launch Xorg
 if systemctl -q is-active graphical.target && [ -x "$(which startx)" ] && [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-    exec startx ~/.xinitrc >"/tmp/startx_$(date +'%d/%m__%H:%M').log" 2>&1
+    exec startx ~/.xinitrc >"/tmp/startx_$(date +'%d-%m_%H:%M').log" 2>&1
 fi
