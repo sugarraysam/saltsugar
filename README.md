@@ -37,6 +37,10 @@ TODO
 - refactor custom states, Result class with easier upgrade + error detection + logging ?
 - pavucontrol show up in dmenu how to?
 - all files in ~/.zshrc.d/ should be in their respective states
+- review X start order ++ refactor scripts
+  - .zprofile
+  - .xinitrc
+  - .xserverrc
 - look into zplug for zsh plugins (https://github.com/zplug/zplug)
 - does grub need a pacman hook after upgrade? kernel upgrade?
 - make sure kernel (pacman -Syu) runs at very end of highstate ++ only prompt for reboot if /lib/modules/$(uname -r) dont exist (meaning kernel was upgraded)

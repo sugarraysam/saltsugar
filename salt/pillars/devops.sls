@@ -6,8 +6,10 @@ devops:
     - clang # C language family frontend for LLVM (provides 'clang-format' required by proto plugin)
     - code # The Open Source build of Visual Studio Code (vscode) editor
     - github-cli # The github CLI
+    - openldap # Lightweight Directory Access Protocol (LDAP) client and server
     - packer # tool for creating identical machine images for multiple platforms from a single source configuration
     - protobuf # Protocol Buffers - Google's data interchange format (required by proto plugin)
+    - sshuttle # Transparent proxy server that forwards all TCP packets over ssh
     - vagrant # Build and distribute virtualized development environments
   dirs:
     - { path: {{ home }}/.local/share/nvim/site/autoload }
