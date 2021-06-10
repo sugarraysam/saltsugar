@@ -40,10 +40,15 @@ function rsyncFiles() {
     mkdir -p /srv/salt
     mkdir -p /srv/pillar
     cp "${PWD}/salt/minion" /etc/salt/minion
-    rsync -aq --no-owner --no-group --no-perms --chmod=ugo=rwX --copy-unsafe-links --delete \
-        --exclude "*.slsc" "${PWD}/salt/roots/." /srv/salt
-    rsync -aq --no-owner --no-group --no-perms --chmod=ugo=rwX --copy-unsafe-links --delete \
-        --exclude "*.slsc" "${PWD}/salt/pillars/." /srv/pillar
+    # -a == --archive == -rlptgoD
+    # -r recurse
+    # -l symlinks
+    # -p perms
+    # -t timestamps
+    # -g groups
+    # -o owner
+    rsync -aq --delete --exclude "*.slsc" "${PWD}/salt/roots/." /srv/salt
+    rsync -aq --delete --exclude "*.slsc" "${PWD}/salt/pillars/." /srv/pillar
 }
 
 function applyState() {
@@ -75,5 +80,8 @@ fi
 
 installDeps
 rsyncFiles
-syncDynamicModules
-[[ "${action}" == "deploy" ]] && applyState "${state}"
+
+if [ "${action}" == "deploy" ]; then
+    syncDynamicModules
+    applyState "${state}"
+fi
