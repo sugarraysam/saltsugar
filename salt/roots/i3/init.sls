@@ -1,3 +1,6 @@
+include:
+  - .pulseaudio
+
 i3_pkgs:
   pkg.installed:
     - pkgs: {{ pillar['i3']['pkgs'] }}

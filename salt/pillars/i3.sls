@@ -11,6 +11,7 @@ i3:
     - pango # A library for layout and rendering of text
     - pavucontrol # PulseAudio Volume Control
     - pulseaudio # A featureful, general-purpose sound server
+    - pulseaudio-alsa # ALSA Configuration for PulseAudio
     - redshift # Adjusts the color temperature of your screen according to your surroundings.
     - ttf-hack # A hand groomed and optically balanced typeface based on Bitstream Vera Mono.
   dotfiles:
@@ -29,4 +30,8 @@ i3:
     - {
         src: /srv/salt/i3/dotfiles/alacritty.yml,
         dest: {{ home }}/.config/alacritty/alacritty.yml,
+      }
+    - {
+        src: /srv/salt/i3/dotfiles/pulseaudio.sh,
+        dest: {{ home }}/.zshrc.d/pulseaudio.sh,
       }
