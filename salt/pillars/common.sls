@@ -73,10 +73,6 @@ common:
         dest: {{ home }}/.config/gopass/config.yml,
       }
     - {
-        src: /srv/salt/common/dotfiles/ssh_config,
-        dest: {{ home }}/.ssh/config,
-      }
-    - {
         src: /usr/bin/pinentry-curses,
         dest: /usr/bin/pinentry,
         user: root,
