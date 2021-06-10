@@ -1,6 +1,8 @@
 #!/bin/bash
 
-screens=$(xrandr -q | grep -w connected | awk '{ print $1 }' | tr '\n' ' ')
+function getScreens() {
+    xrandr -q | grep -w connected | awk '{ print $1 }' | tr '\n' ' '
+}
 
 function _xrandrSingle() {
     laptop="${1}"
@@ -19,7 +21,7 @@ function _xrandrHDMI() {
 }
 
 # single display on laptop screen
-alias xrandrSingle="_xrandrSingle ${screens}"
+alias xrandrSingle='_xrandrSingle $(getScreens)'
 
 ## two monitors with HDMI
-alias xrandrHDMI="_xrandrHDMI ${screens}"
+alias xrandrHDMI='_xrandrHDMI $(getScreens)'

@@ -35,6 +35,10 @@ TODO
 # Roadmap
 
 - refactor custom states, Result class with easier upgrade + error detection + logging ?
+- review X start order ++ refactor scripts
+  - .zprofile
+  - .xinitrc
+  - .xserverrc
 - look into zplug for zsh plugins (https://github.com/zplug/zplug)
 - does grub need a pacman hook after upgrade? kernel upgrade?
 - pre-commit config
