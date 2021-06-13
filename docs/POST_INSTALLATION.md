@@ -13,4 +13,22 @@ $ pacman -S <video_driver>
 
 **Docking station udev rules**
 
-_TODO_
+Add a udev rule to automatically connect Docking station devices:
+
+```bash
+cat > /etc/udev/rules.d/99-removable.rules <<EOF
+
+ACTION=="add", SUBSYSTEM=="thunderbolt", ATTR{authorized}=="0", ATTR{authorized}="1"
+
+EOF
+```
+
+[**fwupd firmware update**](https://wiki.archlinux.org/title/Fwupd)
+
+You can upgrade some devices firmware, including UEFI using the `fwupd` CLI.
+
+**Look at dmesg for firmware errors**
+
+```bash
+$ sudo dmesg | grep -i firmware
+```

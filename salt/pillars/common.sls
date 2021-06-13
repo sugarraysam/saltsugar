@@ -13,6 +13,7 @@ common:
     - fd # Simple, fast and user-friendly alternative to find (written in Rust)
     - feh # Fast and light imlib2-based image viewer
     - firefox # Standalone web browser from mozilla.org
+    - fwupd # Simple daemon to allow session software to update firmware
     - fzf # Command-line fuzzy finder
     - git # the fast distributed version control system
     - gnupg # Complete and free implementation of the OpenPGP
