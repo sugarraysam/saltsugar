@@ -40,6 +40,10 @@ go:
         cmd: "go get google.golang.org/grpc/cmd/protoc-gen-go-grpc", # protoc grpc plugin
       }
     - {
+        id: "install_ocm",
+        cmd: "go get -u github.com/openshift-online/ocm-cli/cmd/ocm", # ocm redhat
+      }
+    - {
         id: "clean_cache",
         cmd: "go clean -cache", # cleans $HOME/.cache/go-build
       }
@@ -47,3 +51,5 @@ go:
         id: "clean_modcache",
         cmd: "go clean -modcache", # cleans $GOPATH/pkg/mod
       }
+  zsh_completions:
+    - "ocm completion zsh > /usr/share/zsh/site-functions/_ocm"

@@ -22,7 +22,7 @@ alias gitLsUntracked="git ls-files . --exclude-standard --others"
 alias gitWhatAdded="git log --follow --diff-filter=A"
 
 # view last version of file
-alias gitLastVersion='f(){ git show HEAD~1:$1};f'
+alias gitPreviousVersion='f(){ git show HEAD~1:$1};f'
 
 # diff all files in directory, recursively, with master
 function _gitDiffMaster() {
