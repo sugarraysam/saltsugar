@@ -13,10 +13,10 @@ go_gh_binaries:
 go_zsh_completions:
   sugcmd.zsh_completions:
     - completions: {{ pillar['go']['zsh_completions'] }}
-    - env:
-      - PATH: "{{ salt['environ.get']('PATH') }}:{{ grains['sugar']['extra_path'] }}"
     - require:
       - pkg: go_pkgs
+      - sugbin: go_gh_binaries
+      - cmd: go_cmd_install_ocm
 
 # Run go cmds
 {% for c in pillar['go']['cmds'] %}

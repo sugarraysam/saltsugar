@@ -23,6 +23,7 @@ k8s:
     - "eksctl completion zsh > /usr/share/zsh/site-functions/_eksctl"
     - "helm completion zsh > /usr/share/zsh/site-functions/_helm"
     - "kind completion zsh > /usr/share/zsh/site-functions/_kind"
+    - "kubebuilder completion zsh > /usr/share/zsh/site-functions/_kubebuilder"
     - "kubectl completion zsh > /usr/share/zsh/site-functions/_kubectl"
   helm_repositories:
     - { name: stable, url: "https://charts.helm.sh/stable" }

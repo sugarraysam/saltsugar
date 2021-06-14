@@ -8,6 +8,16 @@ def zsh_completions(name, completions, **kwargs):
     type completions []string
     """
     results = {"name": name, "result": False, "changes": {}, "comment": []}
+    kwargs.update(
+        {
+            # Augment PATH to find all binaries
+            "env": {
+                "PATH": ":".join(
+                    [__salt__["environ.get"]("PATH"), __grains__["sugar"]["extra_path"]]
+                )
+            },
+        }
+    )
     for c in completions:
         res = __states__["cmd.run"](c, **kwargs)
         results["changes"].update(res["changes"])

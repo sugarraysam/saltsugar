@@ -27,8 +27,10 @@ EOF
 
 You can upgrade some devices firmware, including UEFI using the `fwupd` CLI.
 
-**Look at dmesg for firmware errors**
+**Look at dmesg for errors and missing firmware**
 
 ```bash
 $ sudo dmesg | grep -i firmware
+$ sudo dmesg | grep -i error
+$ sudo dmesg | grep -i warn
 ```
