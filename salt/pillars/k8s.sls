@@ -19,6 +19,10 @@ k8s:
         src: /srv/salt/k8s/dotfiles/k9s_skin.yml,
         dest: {{ home }}/.k9s/skin.yml,
       }
+    - {
+        src: /srv/salt/k8s/dotfiles/k8s.sh,
+        dest: {{ grains['sugar']['zshrcd_path'] }}/k8s.sh,
+      }
   zsh_completions:
     - "eksctl completion zsh > /usr/share/zsh/site-functions/_eksctl"
     - "helm completion zsh > /usr/share/zsh/site-functions/_helm"

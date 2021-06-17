@@ -28,4 +28,4 @@ zsh:
       }
   etc_passwd_line: "{{ grains['sugar']['user'] }}:x:1000:1000::{{ home }}:/usr/bin/zsh"
   zshrcd_src: /srv/salt/zsh/dotfiles/zshrc.d
-  zshrcd_dest: {{ home }}/.zshrc.d
+  direnv_url: https://direnv.net/install.sh

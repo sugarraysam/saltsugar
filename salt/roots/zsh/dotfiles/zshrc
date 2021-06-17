@@ -63,8 +63,11 @@ DISABLE_AUTO_UPDATE="true"
 ZSH_THEME="sunaku"
 
 # TODO explore oh-my-zsh plugins
-# Activate plugins
+# Activate oh-my-zsh plugins
+# - Wiki: https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
+# - Dir:  https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins
 plugins=(
+    direnv
     git
     zsh-autosuggestions
 )

@@ -27,17 +27,18 @@ zsh_git_repos_{{ r.name }}:
     - force_clone: True # overwrite existing dir
 {% endfor %}
 
-create_zshrcd_dir:
+create_zshrcd_or_fix_perms:
   file.directory:
-    - name: {{ pillar['zsh']['zshrcd_dest'] }}
+    - name: {{ grains['sugar']['zshrcd_path'] }}
     - user: {{ grains['sugar']['user'] }}
     - group: {{ grains['sugar']['user'] }}
     - mode: 0775
 
+# TODO get rid of this and have each state manage their drop-ins zshrcd as a dotfile
 # Symlink zshrc.d/* files
 {% for src in salt['file.find'](pillar['zsh']['zshrcd_src'], type='f') %}
 {% set fname = salt['file.basename'](src) %}
-{% set dest = salt['file.join'](pillar['zsh']['zshrcd_dest'], fname) %}
+{% set dest = salt['file.join'](grains['sugar']['zshrcd_path'], fname) %}
 zsh_symlink_{{ fname }}:
   file.symlink:
     - name: {{ dest }}
@@ -47,5 +48,13 @@ zsh_symlink_{{ fname }}:
     - mode: 0644
     - force: True
     - require:
-      - file: create_zshrcd_dir
+      - file: create_zshrcd_or_fix_perms
 {% endfor %}
+
+# 15-06-2021 was still in AUR
+install_direnv:
+  cmd.run:
+    - name: "curl -sfL {{ pillar['zsh']['direnv_url'] }} | bash"
+    - env:
+      - bin_path: "{{ grains['sugar']['user_home'] }}/.local/bin"
+    - runas: {{ grains['sugar']['user'] }}

@@ -36,6 +36,19 @@ alias helmDiffValues="_helmDiffValues"
 
 # kind create custom cluster using ~/.kube/kind-config.yaml
 function _kindCreate() {
-    kind create cluster --name="${1}" --config="${HOME}/.kube/kind-config.yaml"
+    name="${1}"
+    if [ -z "${name}" ]; then
+        echo >&2 "Please specify a name for your cluster."
+        return 1
+    fi
+    kind create cluster --name="${name}" --config="${HOME}/.kube/kind-config.yaml"
 }
 alias kindCreate='_kindCreate'
+
+# delete all kind clusters
+function _kindDeleteAll() {
+    for c in $(kind get clusters); do
+        kind delete cluster --name "${c}"
+    done
+}
+alias kindDeleteAll='_kindDeleteAll'

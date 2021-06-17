@@ -17,13 +17,8 @@ def _user(g):
     return "vagrant" if _is_sandbox() else "sugar"
 
 
-def _user_home(g):
-    return f"/home/{_user(g)}"
-
-
-def _extra_path(g):
+def _extra_path(g, home):
     """Return augmented path to use as env in custom commands."""
-    home = _user_home(g)
     return ":".join(
         [
             # python + custom
@@ -40,7 +35,7 @@ def _extra_path(g):
     )
 
 
-def _vtx_enabled(grains):
+def _vtx_enabled(g):
     """Detect if system supports VTx using /proc/cpuinfo."""
     regex = re.compile("svm|vtx")
     with open("/proc/cpuinfo") as f:
@@ -56,8 +51,9 @@ def main(grains):
 
     # User
     sugar["user"] = _user(grains)
-    sugar["user_home"] = _user_home(grains)
-    sugar["extra_path"] = _extra_path(grains)
+    sugar["user_home"] = os.path.join("/home", sugar["user"])
+    sugar["extra_path"] = _extra_path(grains, sugar["user_home"])
+    sugar["zshrcd_path"] = os.path.join(sugar["user_home"], ".zshrc.d")
 
     # General
     sugar["timezone"] = "America/Chicago"
