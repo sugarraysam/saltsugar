@@ -33,3 +33,8 @@ update_helm_repos:
   cmd.run:
     - name: "helm repo update"
     - runas: {{ grains['sugar']['user'] }}
+
+kind_sysctl_kube_proxy:
+  sysctl.present:
+    - name: net.nf_conntrack_max
+    - value: {{ pillar['k8s']['nf_conntrack_max'] }}

@@ -56,3 +56,4 @@ k8s:
         repo: "kubernetes-sigs/kubebuilder",
         urlfmt: "https://github.com/kubernetes-sigs/kubebuilder/releases/download/{tag}/kubebuilder_linux_amd64",
       }
+  nf_conntrack_max: 393216
