@@ -39,6 +39,7 @@ k8s:
     - { name: influxdata, url: "https://helm.influxdata.com/" }
     - { name: ingress-nginx, url: "https://kubernetes.github.io/ingress-nginx" }
     - { name: prometheus-community, url: "https://prometheus-community.github.io/helm-charts" }
+    - { name: jetstack, url: "https://charts.jetstack.io" }
   gh_binaries:
     - {
         repo: "kubernetes-sigs/kind",
