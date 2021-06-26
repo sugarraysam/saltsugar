@@ -1,4 +1,8 @@
 base:
+  'sugar:vtx_enabled:True':
+    - match: grain
+    - vbox
+
   '*':
     - blackarch
     - common
@@ -17,7 +21,4 @@ base:
     - tmux
     - X
     - zsh
-
-  'sugar:vtx_enabled:True':
-    - match: grain
-    - vbox
+    - last_state # must run last

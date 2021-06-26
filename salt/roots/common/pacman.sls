@@ -16,19 +16,3 @@ update_kernel:
   cmd.run:
     - name: pacman -Syu --noconfirm -q
     - order: last
-
-notify_user_to_reboot:
-  cmd.run:
-    - name: |
-        cat <<EOF
-         ___________________________________
-         < Kernel upgraded. Please reboot. >
-         -----------------------------------
-                \   ^__^
-                 \  (oo)\_______
-                    (__)\       )\/\/
-                        ||----w |
-                        ||     ||
-        EOF
-    - require:
-      - cmd: update_kernel
