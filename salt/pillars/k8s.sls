@@ -10,10 +10,6 @@ k8s:
     - k9s # TUI for managing Kubernetes clusters and pods
     - operator-sdk # SDK for building Kubernetes applications
   dotfiles:
-    - {
-        src: /srv/salt/k8s/dotfiles/kind-config.yaml,
-        dest: {{ home }}/.kube/kind-config.yaml,
-      }
     # Needs to be .yml, .yaml fails
     - {
         src: /srv/salt/k8s/dotfiles/k9s_skin.yml,

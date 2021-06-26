@@ -34,14 +34,21 @@ function _helmDiffValues() {
 # diff helm chart values between versions
 alias helmDiffValues="_helmDiffValues"
 
-# kind create custom cluster using ~/.kube/kind-config.yaml
+# kind create custom cluster /w two nodes
 function _kindCreate() {
     name="${1}"
     if [ -z "${name}" ]; then
         echo >&2 "Please specify a name for your cluster."
         return 1
     fi
-    kind create cluster --name="${name}" --config="${HOME}/.kube/kind-config.yaml"
+    cat <<EOF | kind create cluster --name="${name}" --config=-
+---
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+  - role: control-plane
+  - role: worker
+EOF
 }
 alias kindCreate='_kindCreate'
 

@@ -16,7 +16,23 @@ go_zsh_completions:
     - require:
       - pkg: go_pkgs
       - sugbin: go_gh_binaries
-      - cmd: go_cmd_install_ocm
+      - cmd: gopkg_ocm
+
+
+# Install gopkgs
+{% for p in pillar['go']['gopkgs'] %}
+gopkg_{{ p.name }}:
+  cmd.run:
+    - name: "go get -u {{ p.url }} || true"
+    - runas: {{ grains['sugar']['user'] }}
+    - env:
+      - GO111MODULE: auto
+      - GOPATH: {{ pillar['go']['gopath'] }}
+      - GOBIN: {{ pillar['go']['gobin'] }}
+    - require:
+      - pkg: go_pkgs
+      - sugfile: go_dirs
+{% endfor %}
 
 # Run go cmds
 {% for c in pillar['go']['cmds'] %}
