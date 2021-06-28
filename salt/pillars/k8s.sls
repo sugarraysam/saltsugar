@@ -25,6 +25,7 @@ k8s:
     - "kind completion zsh > /usr/share/zsh/site-functions/_kind"
     - "kubebuilder completion zsh > /usr/share/zsh/site-functions/_kubebuilder"
     - "kubectl completion zsh > /usr/share/zsh/site-functions/_kubectl"
+    - "operator-sdk completion zsh > /usr/share/zsh/site-functions/_operator-sdk"
   helm_repositories:
     - { name: stable, url: "https://charts.helm.sh/stable" }
     - { name: bitnami, url: "https://charts.bitnami.com/bitnami" }

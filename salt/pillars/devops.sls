@@ -19,6 +19,11 @@ devops:
     - { path: {{ home }}/.local/share/nvim/plugged }
     - { path: {{ home }}/.config/nvim/plugins }
     - { path: {{ home }}/.config/nvim/debug }
+  gh_binaries:
+    - {
+        repo: "operator-framework/operator-registry",
+        urlfmt: "https://github.com/operator-framework/operator-registry/releases/download/{tag}/linux-amd64-opm",
+      }
   dotfiles:
     - {
         src: /srv/salt/devops/dotfiles/vscode/settings.json,

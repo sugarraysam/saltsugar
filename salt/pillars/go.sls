@@ -33,6 +33,8 @@ go:
     - { name: ocm, url: github.com/openshift-online/ocm-cli/cmd/ocm } # ocm redhat
     - { name: cfssl, url: github.com/cloudflare/cfssl/cmd/cfssl } # CloudFlare's PKI/TLS toolkit
     - { name: cfssljson, url: github.com/cloudflare/cfssl/cmd/cfssljson } # cfssljson utility
+    - { name: controller_gen, url: sigs.k8s.io/controller-tools/cmd/controller-gen } # controller-gen from controller-tools
+    - { name: kubeval, url: github.com/instrumenta/kubeval } # evaluate k8s yaml files
   cmds:
     - { id: "clean_cache", cmd: "go clean -cache" } # cleans $HOME/.cache/go-build
     - { id: "clean_modcache", cmd: "go clean -modcache" } # cleans $GOPATH/pkg/mod

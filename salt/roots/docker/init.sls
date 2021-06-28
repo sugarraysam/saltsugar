@@ -22,3 +22,10 @@ docker_svc:
     - require:
       - pkg: docker_pkgs
       - group: docker_group
+
+docker_cleanup:
+  cmd.run:
+    - name: docker system prune --force --volumes
+    - require:
+      - pkg: docker_pkgs
+      - service: docker_svc

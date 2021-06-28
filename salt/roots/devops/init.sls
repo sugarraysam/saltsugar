@@ -8,6 +8,10 @@ devops_symlink_dotfiles:
     - require:
       - pkg: devops_pkgs
 
+devops_gh_binaries:
+  sugbin.dwl_gh_binaries:
+    - binaries: {{ pillar['devops']['gh_binaries'] }}
+
 devops_zsh_completions:
   sugcmd.zsh_completions:
     - completions: {{ pillar['devops']['zsh_completions'] }}
@@ -34,3 +38,9 @@ install_vscode_settings_sync:
     - runas: {{ grains['sugar']['user'] }}
     - require:
       - sugfile: devops_symlink_dotfiles
+
+podman_cleanup:
+  cmd.run:
+    - name: podman system prune --force --volumes
+    - require:
+      - pkg: devops_pkgs
