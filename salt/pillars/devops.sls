@@ -33,6 +33,10 @@ devops:
         src: /srv/salt/devops/dotfiles/vscode/keybindings.json,
         dest: "{{ home }}/.config/Code - OSS/User/keybindings.json",
       }
+    - {
+        src: /srv/salt/devops/dotfiles/devops.sh,
+        dest: {{ grains['sugar']['zshrcd_path'] }}/devops.sh,
+      }
   zsh_completions:
     - "gh completion -s zsh > /usr/share/zsh/site-functions/_gh"
   aws_cli_v2_url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
