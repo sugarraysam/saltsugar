@@ -59,3 +59,6 @@ function _kindDeleteAll() {
     done
 }
 alias kindDeleteAll='_kindDeleteAll'
+
+# validate k8s manifest
+alias kvalidate='kubectl apply --dry-run=server --validate=true -f'

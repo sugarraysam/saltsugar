@@ -53,7 +53,8 @@
     "workbench.startupEditor": "newUntitledFile",
     "sync.removeExtensions": true,
     "sync.forceDownload": false,
-    "editor.fontSize": 14,
+    "editor.fontSize": 17,
+    "terminal.integrated.fontSize": 17,
     "python.languageServer": "Microsoft",
     "files.insertFinalNewline": true,
     "editor.rulers": [
