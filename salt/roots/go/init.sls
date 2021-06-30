@@ -6,6 +6,10 @@ go_dirs:
   sugfile.directories:
     - dirs: {{ pillar['go']['dirs'] }}
 
+go_symlink_dotfiles:
+  sugfile.symlink_dotfiles:
+    - dotfiles: {{ pillar['go']['dotfiles'] }}
+
 go_gh_binaries:
   sugbin.dwl_gh_binaries:
     - binaries: {{ pillar['go']['gh_binaries'] }}

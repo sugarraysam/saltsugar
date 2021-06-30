@@ -13,6 +13,11 @@ go:
   dirs:
     - { path: {{ gopath }} }
     - { path: {{ gobin }} }
+  dotfiles:
+    - {
+        src: /srv/salt/go/dotfiles/go.sh,
+        dest: {{ grains['sugar']['zshrcd_path'] }}/go.sh,
+      }
   gh_binaries:
     - {
         repo: "golangci/golangci-lint",
@@ -35,8 +40,10 @@ go:
     - { name: cfssljson, url: github.com/cloudflare/cfssl/cmd/cfssljson } # cfssljson utility
     - { name: controller_gen, url: sigs.k8s.io/controller-tools/cmd/controller-gen } # controller-gen from controller-tools
     - { name: kubeval, url: github.com/instrumenta/kubeval } # evaluate k8s yaml files
+    - { name: go_getter, url: github.com/hashicorp/go-getter/cmd/go-getter } # download files or directories from various sources
   cmds:
     - { id: "clean_cache", cmd: "go clean -cache" } # cleans $HOME/.cache/go-build
     - { id: "clean_modcache", cmd: "go clean -modcache" } # cleans $GOPATH/pkg/mod
+    - { id: "clean_testcache", cmd: "go clean -testcache" } # cleans test results in go build cache
   zsh_completions:
     - "ocm completion zsh > /usr/share/zsh/site-functions/_ocm"
