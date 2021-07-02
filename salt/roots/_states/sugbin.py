@@ -99,7 +99,7 @@ def _get_name(b):
 
 
 def _get_dest(b):
-    base = f"{__grains__['sugar']['user_home']}/.local/bin/"
+    base = f"{__grains__['sugar']['localbin_path']}/"
     if _is_archive(b):
         return base
     else:

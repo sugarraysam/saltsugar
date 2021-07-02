@@ -9,7 +9,7 @@ cpp:
     - swig # Generate scripting interfaces to C/cpp code
   gh_binaries:
     - {
-        dest: {{ home }}/.local/bin/buildifier,
+        dest: {{ grains['sugar']['localbin_path'] }}/buildifier,
         repo: "bazelbuild/buildtools",
         urlfmt: "https://github.com/bazelbuild/buildtools/releases/download/{tag}/buildifier-linux-amd64",
       }

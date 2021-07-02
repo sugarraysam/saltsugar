@@ -34,3 +34,12 @@ $ sudo dmesg | grep -i firmware
 $ sudo dmesg | grep -i error
 $ sudo dmesg | grep -i warn
 ```
+
+**Generate `/etc/conf.d/lm_sensors`**
+
+Detect hardware monitoring chips and configure them. Follow the interactive prompts.
+
+```bash
+$ sudo pacman -S lm_sensors
+$ sudo sensors-detect
+```

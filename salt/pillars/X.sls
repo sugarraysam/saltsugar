@@ -25,4 +25,8 @@ X:
         src: /srv/salt/X/dotfiles/xserverrc,
         dest: {{ home }}/.xserverrc,
       }
+    - {
+        src: /srv/salt/X/dotfiles/X.sh,
+        dest: {{ grains['sugar']['zshrcd_path'] }}/X.sh,
+      }
   xkbmodel_cmd: "setxkbmap -query | grep model | awk '{ print $2 }'"

@@ -56,5 +56,5 @@ install_direnv:
   cmd.run:
     - name: "curl -sfL {{ pillar['zsh']['direnv_url'] }} | bash"
     - env:
-      - bin_path: "{{ grains['sugar']['user_home'] }}/.local/bin"
+      - bin_path: {{ grains['sugar']['localbin_path'] }}
     - runas: {{ grains['sugar']['user'] }}

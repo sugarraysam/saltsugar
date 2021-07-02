@@ -54,6 +54,7 @@ def main(grains):
     sugar["user_home"] = os.path.join("/home", sugar["user"])
     sugar["extra_path"] = _extra_path(grains, sugar["user_home"])
     sugar["zshrcd_path"] = os.path.join(sugar["user_home"], ".zshrc.d")
+    sugar["localbin_path"] = os.path.join(sugar["user_home"], ".local/bin")
 
     # General
     sugar["timezone"] = "America/Chicago"
