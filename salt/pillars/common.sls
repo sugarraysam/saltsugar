@@ -79,6 +79,11 @@ common:
         user: root,
         group: root,
       }
+    - {
+        src: /srv/salt/common/dotfiles/catsay,
+        dest: {{ grains['sugar']['localbin_path'] }}/catsay,
+        mode: "0755",
+      }
   files_to_remove:
     - {{ home }}/.bash_logout
     - {{ home }}/.bash_profile
