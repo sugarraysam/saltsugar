@@ -53,7 +53,7 @@ function _xrandrTriple() {
     xrandr --verbose \
         --output "${LAPTOP}" --auto \
         --output "${TOP}" --auto --above "${LAPTOP}" \
-        --output "${LEFT}" --auto --left-of "${LAPTOP}"
+        --output "${LEFT}" --auto --left-of "${TOP}"
 }
 
 alias xrandrTriple='_xrandrTriple'

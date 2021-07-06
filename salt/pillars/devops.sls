@@ -3,7 +3,6 @@
 devops:
   pkgs:
     - aws-cli # Universal Command Line Interface for Amazon Web Services
-    - bazel # Correct, reproducible, and fast builds for everyone
     - buildah # A tool which facilitates building OCI images
     - clang # C language family frontend for LLVM (provides 'clang-format' required by proto plugin)
     - code # The Open Source build of Visual Studio Code (vscode) editor
@@ -33,9 +32,14 @@ devops:
         dest: {{ grains['sugar']['localbin_path'] }}/buildifier,
       }
     - {
+        repo: bazelbuild/buildtools,
+        urlfmt: "https://github.com/bazelbuild/buildtools/releases/download/{tag}/buildozer-linux-amd64",
+        dest: {{ grains['sugar']['localbin_path'] }}/buildozer,
+      }
+    - {
         repo: bazelbuild/bazelisk,
         urlfmt: "https://github.com/bazelbuild/bazelisk/releases/download/{tag}/bazelisk-linux-amd64",
-        dest: {{ grains['sugar']['localbin_path'] }}/bazelisk,
+        dest: {{ grains['sugar']['localbin_path'] }}/bazel,
       }
   dotfiles:
     - {
