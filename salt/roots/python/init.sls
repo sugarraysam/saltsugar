@@ -6,7 +6,7 @@ python_pkgs:
 {% for d in ["pip", "pipenv"] %}
 clear_{{ d }}_cache:
   file.absent:
-    - name: {{ grains['sugar']['user_home'] }}/.cache/{{ d }}
+    - name: {{ grains['sugar']['home'] }}/.cache/{{ d }}
 {% endfor %}
 
 ensure_pip:

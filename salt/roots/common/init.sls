@@ -54,7 +54,7 @@ add_user_to_groups:
 
 gnupg_keyring_permissions:
   file.directory:
-    - name: {{ grains['sugar']['user_home'] }}/.gnupg
+    - name: {{ grains['sugar']['home'] }}/.gnupg
     - user: {{ grains['sugar']['user'] }}
     - group: {{ grains['sugar']['user'] }}
     - file_mode: 0600

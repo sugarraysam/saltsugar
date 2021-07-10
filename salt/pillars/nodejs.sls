@@ -1,4 +1,4 @@
-{% set home = grains['sugar']['user_home'] %}
+{% set home = grains['sugar']['home'] %}
 {% set npm_config_prefix = home + "/.node_modules" %}
 
 nodejs:

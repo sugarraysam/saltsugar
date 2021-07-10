@@ -34,7 +34,7 @@ create_tmux_session:
 # If session already exists, make sure it is synced with latest tmux config
 source_tmux_conf:
   cmd.run:
-    - name: tmux source {{ grains['sugar']['user_home'] }}/.tmux.conf
+    - name: tmux source {{ grains['sugar']['home'] }}/.tmux.conf
     - runas: {{ grains['sugar']['user'] }}
     - require:
       - cmd: create_tmux_session

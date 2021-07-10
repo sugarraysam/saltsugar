@@ -6,7 +6,7 @@ vbox_pkgs:
 
 delete_default_machine_folder:
   file.absent:
-    - name: "{{ grains['sugar']['user_home'] }}/VirtualBox VMs"
+    - name: "{{ grains['sugar']['home'] }}/VirtualBox VMs"
     - require:
       - pkg: vbox_pkgs
 

@@ -1,4 +1,4 @@
-{% set home = grains['sugar']['user_home'] %}
+{% set home = grains['sugar']['home'] %}
 
 i3:
   pkgs:
@@ -35,3 +35,4 @@ i3:
         src: /srv/salt/i3/dotfiles/pulseaudio.sh,
         dest: {{ home }}/.zshrc.d/pulseaudio.sh,
       }
+  dmenu_cache_path: {{ home }}/.cache/dmenu_run

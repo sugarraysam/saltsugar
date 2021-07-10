@@ -1,4 +1,4 @@
-{% set home = grains['sugar']['user_home'] %}
+{% set home = grains['sugar']['home'] %}
 
 blackarch:
   install_script_url: "https://blackarch.org/strap.sh"
