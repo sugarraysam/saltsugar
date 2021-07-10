@@ -14,6 +14,7 @@ devops:
     - skopeo # A command line utility for various operations on container images and image repositories.
     - sqlite # A C library that implements an SQL database engine
     - sshuttle # Transparent proxy server that forwards all TCP packets over ssh
+    - tekton-cli # CLI for interacting with the Tekton CI/CD pipeline
     - vagrant # Build and distribute virtualized development environments
   dirs:
     - { path: {{ home }}/.local/share/nvim/site/autoload }
@@ -36,6 +37,7 @@ devops:
         urlfmt: "https://github.com/bazelbuild/buildtools/releases/download/{tag}/buildozer-linux-amd64",
         dest: {{ grains['sugar']['localbin_path'] }}/buildozer,
       }
+    # Use bazelisk as bazel, as it will pull and manage versions of bazel
     - {
         repo: bazelbuild/bazelisk,
         urlfmt: "https://github.com/bazelbuild/bazelisk/releases/download/{tag}/bazelisk-linux-amd64",
@@ -52,4 +54,5 @@ devops:
       }
   zsh_completions:
     - "gh completion -s zsh > /usr/share/zsh/site-functions/_gh"
+    - "tkn completion zsh > /usr/share/zsh/site-functions/_tkn"
   aws_cli_v2_url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
