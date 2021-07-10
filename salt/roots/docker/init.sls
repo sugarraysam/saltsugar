@@ -2,6 +2,10 @@ docker_pkgs:
   pkg.installed:
     - pkgs: {{ pillar['docker']['pkgs'] }}
 
+docker_symlink_dotfiles:
+  sugfile.symlink_dotfiles:
+    - dotfiles: {{ pillar['docker']['dotfiles'] }}
+
 docker_gh_binaries:
   sugbin.dwl_gh_binaries:
     - binaries: {{ pillar['docker']['gh_binaries'] }}

@@ -35,7 +35,6 @@ TODO
 # Roadmap
 
 - refactor custom states, Result class with easier upgrade + error detection + logging ?
-- pavucontrol show up in dmenu how to?
 - docker configure credential helper
 
 ```bash

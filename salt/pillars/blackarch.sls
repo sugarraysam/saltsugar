@@ -23,6 +23,10 @@ blackarch:
         src: /srv/salt/blackarch/dotfiles/gdbinit,
         dest: {{ home }}/.gdbinit,
       }
+    - {
+        src: /srv/salt/blackarch/dotfiles/blackarch.sh,
+        dest: {{ grains['sugar']['zshrcd_path'] }}/blackarch.sh,
+      }
   git_repos:
     - {
         name: payloadallthethings,
