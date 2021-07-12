@@ -1,4 +1,4 @@
-{% set home = grains['sugar']['user_home'] %}
+{% set home = grains['sugar']['home'] %}
 
 blackarch:
   install_script_url: "https://blackarch.org/strap.sh"
@@ -22,6 +22,10 @@ blackarch:
     - {
         src: /srv/salt/blackarch/dotfiles/gdbinit,
         dest: {{ home }}/.gdbinit,
+      }
+    - {
+        src: /srv/salt/blackarch/dotfiles/blackarch.sh,
+        dest: {{ grains['sugar']['zshrcd_path'] }}/blackarch.sh,
       }
   git_repos:
     - {

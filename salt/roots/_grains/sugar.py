@@ -2,6 +2,7 @@
 import os
 import pwd
 import re
+import subprocess
 
 
 def _is_sandbox():
@@ -13,20 +14,27 @@ def _is_sandbox():
         return False
 
 
-def _user(g):
-    return "vagrant" if _is_sandbox() else "sugar"
-
-
-def _extra_path(g, home):
+# Keep up-to-date with `salt/roots/zsh/dotfiles/zshrc`
+def _extra_path(user, home):
     """Return augmented path to use as env in custom commands."""
+    ruby_path = subprocess.run(
+        ["sudo", "-u", user, "ruby", "-e", "puts Gem.user_dir"],
+        capture_output=True,
+        text=True,
+    ).stdout
+
     return ":".join(
         [
+            # pyenv
+            os.path.join(home, ".pyenv/shims"),
             # python + custom
             os.path.join(home, ".local/bin"),
             # go
             os.path.join(home, ".go/bin"),
             # nodejs
             os.path.join(home, ".node_modules/bin"),
+            # ruby
+            f"{ruby_path}/bin",
             # rust
             os.path.join(home, ".cargo/bin"),
             # k8s krew
@@ -50,11 +58,11 @@ def main(grains):
     sugar["is_sandbox"] = _is_sandbox()
 
     # User
-    sugar["user"] = _user(grains)
-    sugar["user_home"] = os.path.join("/home", sugar["user"])
-    sugar["extra_path"] = _extra_path(grains, sugar["user_home"])
-    sugar["zshrcd_path"] = os.path.join(sugar["user_home"], ".zshrc.d")
-    sugar["localbin_path"] = os.path.join(sugar["user_home"], ".local/bin")
+    sugar["user"] = "vagrant" if sugar["is_sandbox"] else "sugar"
+    sugar["home"] = os.path.join("/home", sugar["user"])
+    sugar["extra_path"] = _extra_path(sugar["user"], sugar["home"])
+    sugar["zshrcd_path"] = os.path.join(sugar["home"], ".zshrc.d")
+    sugar["localbin_path"] = os.path.join(sugar["home"], ".local/bin")
 
     # General
     sugar["timezone"] = "America/Chicago"

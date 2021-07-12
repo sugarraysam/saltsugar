@@ -1,4 +1,4 @@
-{% set home = grains['sugar']['user_home'] %}
+{% set home = grains['sugar']['home'] %}
 
 common:
   pkgs:
@@ -83,6 +83,26 @@ common:
         src: /srv/salt/common/dotfiles/catsay,
         dest: {{ grains['sugar']['localbin_path'] }}/catsay,
         mode: "0755",
+      }
+    - {
+        src: /srv/salt/common/dotfiles/pacman.sh,
+        dest: {{ grains['sugar']['zshrcd_path'] }}/pacman.sh,
+      }
+    - {
+        src: /srv/salt/common/dotfiles/general.sh,
+        dest: {{ grains['sugar']['zshrcd_path'] }}/general.sh,
+      }
+    - {
+        src: /srv/salt/common/dotfiles/systemd.sh,
+        dest: {{ grains['sugar']['zshrcd_path'] }}/systemd.sh,
+      }
+    - {
+        src: /srv/salt/common/dotfiles/gopass.sh,
+        dest: {{ grains['sugar']['zshrcd_path'] }}/gopass.sh,
+      }
+    - {
+        src: /srv/salt/common/dotfiles/git.sh,
+        dest: {{ grains['sugar']['zshrcd_path'] }}/git.sh,
       }
   files_to_remove:
     - {{ home }}/.bash_logout

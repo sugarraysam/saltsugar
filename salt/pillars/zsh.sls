@@ -1,5 +1,4 @@
-# vi: set ft=sls :
-{% set home = grains['sugar']['user_home'] %}
+{% set home = grains['sugar']['home'] %}
 
 zsh:
   pkgs:
