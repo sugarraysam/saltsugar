@@ -25,8 +25,6 @@ helm_repo_{{ r.name }}:
     - runas: {{ grains['sugar']['user'] }}
     - require:
       - pkg: k8s_pkgs
-    - onchanges_in:
-      - cmd: update_helm_repos
 {% endfor %}
 
 update_helm_repos:
@@ -38,3 +36,16 @@ kind_sysctl_kube_proxy:
   sysctl.present:
     - name: net.nf_conntrack_max
     - value: {{ pillar['k8s']['nf_conntrack_max'] }}
+
+k8s_krew_mgmt:
+  cmd.run:
+    - name: |
+        krew update
+        krew upgrade
+        krew install {{ ' '.join(pillar['k8s']['krew_plugins']) }}
+    - runas: {{ grains['sugar']['user'] }}
+    - env:
+      - PATH: "{{ salt['environ.get']('PATH') }}:{{ grains['sugar']['extra_path'] }}"
+    - require:
+      - pkg: k8s_pkgs
+      - sugbin: k8s_gh_binaries

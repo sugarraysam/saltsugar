@@ -41,6 +41,10 @@ devops:
         urlfmt: "https://github.com/bazelbuild/bazelisk/releases/download/{tag}/bazelisk-linux-amd64",
         dest: {{ grains['sugar']['localbin_path'] }}/bazel,
       }
+    - {
+        repo: profclems/glab,
+        urlfmt: "https://github.com/profclems/glab/releases/download/{tag}/glab_{tag_no_v}_Linux_i386.tar.gz",
+      }
   dotfiles:
     - {
         src: /srv/salt/devops/dotfiles/vscode/settings.json,
@@ -52,4 +56,5 @@ devops:
       }
   zsh_completions:
     - "gh completion -s zsh > /usr/share/zsh/site-functions/_gh"
+    - "glab completion -s zsh > /usr/share/zsh/site-functions/_glab"
   aws_cli_v2_url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip

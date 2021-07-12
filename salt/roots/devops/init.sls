@@ -17,6 +17,7 @@ devops_zsh_completions:
     - completions: {{ pillar['devops']['zsh_completions'] }}
     - require:
       - pkg: devops_pkgs
+      - sugbin: devops_gh_binaries
 
 # Remove once aws-cli package is upgraded to v2
 install_aws_cli_v2:
