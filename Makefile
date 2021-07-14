@@ -29,36 +29,40 @@ export BOOTSTRAP_USER_PASSWD ?= sugar
 # Password for root
 export BOOTSTRAP_ROOT_PASSWD ?= root
 
-help:
-	@echo "make [ salt-sandbox | salt | bootstrap-test | bootstrap | rsync | clean | help ]"
-	@echo "    salt-sandbox:     Create salt sandbox using vagrant."
-	@echo "    salt:             Rsync and apply salt state to system. [ STATE=<state> ] make salt"
-	@echo "    rsync:            Rsync salt files to /srv/salt and /srv/pillar. Does not apply any state."
-	@echo "    bootstrap-test:   Test bootstrap + chroot scripts using packer."
-	@echo "    bootstrap:        Bootstrap a new installation from the ArchLinux ISO."
-	@echo "    clean:            Destroy VM and build files from packer."
-	@echo "    help:             Show this help menu."
+##@ General
 
-salt-sandbox:
+help: ## Display this help.
+	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} /^[a-zA-Z_0-9-]+:.*?##/ { printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
+
+##@ Development
+
+salt-sandbox: ## Create salt sandbox using vagrant
 	@vagrant validate
 	@vagrant up --provision
 
-salt:
-	@sudo -E ./scripts/salt.sh
-
-rsync:
-	@ACTION=rsync sudo -E ./scripts/salt.sh
-
-bootstrap-test:
-	@packer validate packer/
-	@packer build -force packer/
-
-bootstrap:
-	@./scripts/bootstrap.sh
-
 FILES_TO_REMOVE := $(shell find _build -type f 2>/dev/null)
-clean:
+clean: ## Destroy VM and build files from packer.
 	@echo "Removing $(FILES_TO_REMOVE)..."
 	@if [ -d "_build" ]; then rm -fr _build; fi
 	@vagrant destroy --force
 	-@vboxmanage unregistervm $(BOOTSTRAP_VM_NAME) --delete > /dev/null 2>&1
+
+##@ Deploy
+
+ls-states: ## List all available salt states.
+	@ls $(PWD)/salt/roots | grep -E -v '^_.*|top.sls' | sort
+
+salt: ## Rsync and apply salt state to system. [ STATE=<state> ] make salt
+	@sudo -E ./scripts/salt.sh
+
+rsync: ## Rsync salt files to /srv/salt and /srv/pillar. Does not apply any state.
+	@ACTION=rsync sudo -E ./scripts/salt.sh
+
+##@ New Arch installation
+
+bootstrap-test: ## Test bootstrap + chroot scripts using packer.
+	@packer validate packer/
+	@packer build -force packer/
+
+bootstrap: ## Bootstrap a new installation from the ArchLinux ISO.
+	@./scripts/bootstrap.sh

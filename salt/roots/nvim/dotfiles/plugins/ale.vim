@@ -65,6 +65,7 @@ let g:ale_fixers = {
             \],
             \}
 
+let g:ale_python_black_options = '--line-length 80'
 
 """
 """ Linters configuration
@@ -84,7 +85,7 @@ let g:ale_linters = {
             \],
             \}
 
-let g:ale_python_flake8_options = '--max-line-length=100'
+let g:ale_python_flake8_options = '--max-line-length=80'
 
 
 """
