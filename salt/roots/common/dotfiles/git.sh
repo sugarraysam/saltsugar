@@ -41,3 +41,20 @@ function _gitPurgeBranch() {
     git push origin :${branch}
 }
 alias gitPurgeBranch=_gitPurgeBranch
+
+# update upstream for fork project
+function _updateUpstream() {
+    if ! git remote | grep upstream >/dev/null 2>&1; then
+        echo >&2 "No 'upstream' remote in repository. Exiting."
+        return 1
+    fi
+    git fetch upstream
+
+    for branch in master main; do
+        if git rev-parse --quiet --verify "${branch}"; then
+            git merge upstream/"${branch}"
+            break
+        fi
+    done
+}
+alias gitUpdateUpstream="_updateUpstream"

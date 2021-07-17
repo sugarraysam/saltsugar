@@ -65,7 +65,7 @@ let g:ale_fixers = {
             \],
             \}
 
-let g:ale_python_black_options = '--line-length 80'
+let g:ale_python_black_options = '--line-length 80 --experimental-string-processing'
 
 """
 """ Linters configuration

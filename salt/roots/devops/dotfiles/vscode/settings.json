@@ -29,9 +29,22 @@
         "staticcheck": false,
     },
     // --- Python ---
-    "python.formatting.blackPath": "${env:HOME}/.local/bin/black",
-    "python.jediEnabled": false,
+    "[python]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
     "python.formatting.provider": "black",
+    "python.formatting.blackPath": "${env:HOME}/.local/bin/black",
+    "python.formatting.blackArgs": [
+        "--line-length=80",
+        "--experimental-string-processing",
+    ],
+    "python.sortImports.args": [
+        "--profile",
+        "black"
+    ],
+    "python.jediEnabled": false,
     "python.pipenvPath": "${env:HOME}/.local/bin/pipenv",
     // --- Docker ---
     "[dockerfile]": {
