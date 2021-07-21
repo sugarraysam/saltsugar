@@ -71,6 +71,7 @@
     "python.languageServer": "Microsoft",
     "files.insertFinalNewline": true,
     "editor.rulers": [
+        80,
         120
     ],
     "workbench.colorTheme": "Gruvbox Dark Medium",

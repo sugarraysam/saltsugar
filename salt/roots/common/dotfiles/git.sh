@@ -24,15 +24,20 @@ alias gitWhatAdded="git log --follow --diff-filter=A"
 # view last version of file
 alias gitPreviousVersion='f(){ git show HEAD~1:$1};f'
 
-# diff all files in directory, recursively, with master
-function _gitDiffMaster() {
-    out=$(mktemp)
-    for f in $(find . -type f); do
-        git diff master:${f} ${f} >>${out}
-    done
-    bat ${out}
+# diff single file with version in branch
+function _gitDiffFile() {
+    file="${1}"
+    branch="${2}"
+
+    if [[ -z "${file}" ]] || [[ -z "${branch}" ]]; then
+        echo >&2 "usage: gitDiffFile file branch"
+        echo >&2 "  - file:     file to diff"
+        echo >&2 "  - branch:   compare file with version on this branch"
+        return 1
+    fi
+    git diff ${branch}:${file} ${file}
 }
-alias gitDiffMaster=_gitDiffMaster
+alias gitDiffFile=_gitDiffFile
 
 # delete old branch from local and remote repo
 function _gitPurgeBranch() {
