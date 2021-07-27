@@ -32,6 +32,7 @@ common:
     - nmap # Utility for network discovery and security auditing
     - okular # Document Viewer (pdf)
     - openvpn # An easy-to-use, robust and highly configurable VPN (Virtual Private Network)
+    - pandoc # Conversion between markup formats
     - parallel # A shell tool for executing jobs in parallel
     - pinentry # Collection of simple PIN or passphrase entry dialogs which utilize the Assuan protocol
     - ripgrep # A search tool that combines the usability of ag with the raw speed of grep
