@@ -2,6 +2,10 @@ clean_pacman_cache:
   cmd.run:
     - name: pacman --noconfirm -q -Sc
 
+update_files_db:
+  cmd.run:
+    - name: pacman --noconfirm -q -Fy
+
 remove_orphan_packages:
   cmd.script:
     - name: salt://common/scripts/remove_orphan_packages.sh

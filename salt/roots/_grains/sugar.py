@@ -3,6 +3,19 @@ import os
 import pwd
 import re
 import subprocess
+from pathlib import Path
+
+
+def _machine_name():
+    ID_2_NAME = {
+        "b7a06a0445bf4b91b0d580b52a48bb07": "redhat",
+        "52b6b48fd4854afeb74815832a796d0f": "perso",
+    }
+    machine_id = Path("/etc/machine-id").read_text().strip()
+    try:
+        return ID_2_NAME[machine_id]
+    except KeyError as e:
+        raise e
 
 
 def _is_sandbox():
@@ -53,6 +66,13 @@ def _vtx_enabled(g):
     return False
 
 
+def _git_username_and_email(machine_name):
+    if machine_name == "redhat":
+        return ("sblaisdo", "sblaisdo@redhat.com")
+    else:
+        return ("sugarraysam", "samuel.blaisdowdy@protonmail.com")
+
+
 def main(grains):
     sugar = {}
     sugar["is_sandbox"] = _is_sandbox()
@@ -69,8 +89,10 @@ def main(grains):
     sugar["hostname"] = "htp"
     sugar["keymap"] = "us"
     sugar["vtx_enabled"] = _vtx_enabled(grains)
+    sugar["machine_name"] = _machine_name()
 
     # Git
-    sugar["git_username"] = "sugarraysam"
-    sugar["git_email"] = "samuel.blaisdowdy@protonmail.com"
+    username, email = _git_username_and_email(sugar["machine_name"])
+    sugar["git_username"] = username
+    sugar["git_email"] = email
     return {"sugar": sugar}

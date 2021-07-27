@@ -57,7 +57,7 @@ function _updateUpstream() {
 
     for branch in master main; do
         if git rev-parse --quiet --verify "${branch}"; then
-            git merge upstream/"${branch}"
+            git rebase upstream/"${branch}"
             break
         fi
     done

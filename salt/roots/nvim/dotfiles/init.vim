@@ -67,7 +67,7 @@ exec "source" . $HOME . "/.config/nvim/autocmds.vim"
 """
 " See here for how to overwrite colorscheme
 " (https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f)
-let &colorcolumn=join(range(101,999),",")
+let &colorcolumn=join(range(81,999),",")
 augroup MyColors
     autocmd!
     autocmd ColorScheme * highlight Normal ctermbg=0
