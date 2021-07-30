@@ -35,6 +35,7 @@ TODO
 # Roadmap
 
 - refactor custom states, Result class with easier upgrade + error detection + logging ?
+- get rid of `~/perso` and put everything in `~/opt/perso` so its backed in git
 - docker configure credential helper
 
 ```bash

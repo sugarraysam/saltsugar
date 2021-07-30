@@ -40,9 +40,12 @@
         "--line-length=80",
         "--experimental-string-processing",
     ],
+    "python.sortImports.path": "${env:HOME}/.local/bin/isort",
     "python.sortImports.args": [
         "--profile",
-        "black"
+        "black",
+        "-l",
+        "80"
     ],
     "python.jediEnabled": false,
     "python.pipenvPath": "${env:HOME}/.local/bin/pipenv",
