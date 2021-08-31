@@ -27,6 +27,7 @@ common:
     - lsd # Modern ls with a lot of pretty colors and awesome icons (written in Rust)
     - lsof # Lists open files for running Unix processes
     - ltrace # Tracks runtime library calls in dynamically linked programs
+    - mlocate # Merging locate/updatedb implementation
     - namcap # A Pacman package analyzer
     - networkmanager-openvpn # NetworkManager VPN plugin for OpenVPN
     - nmap # Utility for network discovery and security auditing
