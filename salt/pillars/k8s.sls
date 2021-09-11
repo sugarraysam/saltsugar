@@ -13,7 +13,7 @@ k8s:
     # Needs to be .yml, .yaml fails
     - {
         src: /srv/salt/k8s/dotfiles/k9s_skin.yml,
-        dest: {{ home }}/.k9s/skin.yml,
+        dest: {{ home }}/.config/k9s/skin.yml,
       }
     - {
         src: /srv/salt/k8s/dotfiles/k8s.sh,
