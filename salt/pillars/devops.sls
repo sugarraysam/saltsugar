@@ -47,6 +47,10 @@ devops:
         repo: profclems/glab,
         urlfmt: "https://github.com/profclems/glab/releases/download/{tag}/glab_{tag_no_v}_Linux_i386.tar.gz",
       }
+    - {
+        repo: slok/sloth,
+        urlfmt: "https://github.com/slok/sloth/releases/download/{tag}/sloth-linux-amd64"
+      }
   dotfiles:
     - {
         src: /srv/salt/devops/dotfiles/vscode/settings.json,

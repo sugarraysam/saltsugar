@@ -41,6 +41,7 @@ go:
     - { name: controller_gen, url: sigs.k8s.io/controller-tools/cmd/controller-gen } # controller-gen from controller-tools
     - { name: kubeval, url: github.com/instrumenta/kubeval } # evaluate k8s yaml files
     - { name: go_getter, url: github.com/hashicorp/go-getter/cmd/go-getter } # download files or directories from various sources
+    - { name: promtool, url: github.com/prometheus/prometheus/cmd/promtool } # promtool prometheus CLI helper
   cmds:
     - { id: "clean_cache", cmd: "go clean -cache" } # cleans $HOME/.cache/go-build
     - { id: "clean_modcache", cmd: "go clean -modcache" } # cleans $GOPATH/pkg/mod

@@ -23,11 +23,11 @@ go_zsh_completions:
       - cmd: gopkg_ocm
 
 
-# Install gopkgs
+# Install gopkgs or Download or Fail safe
 {% for p in pillar['go']['gopkgs'] %}
 gopkg_{{ p.name }}:
   cmd.run:
-    - name: "go get -u {{ p.url }} || true"
+    - name: "go install {{ p.url }}@latest || go get -u {{ p.url }} || true"
     - runas: {{ grains['sugar']['user'] }}
     - env:
       - GO111MODULE: auto
