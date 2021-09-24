@@ -3,7 +3,7 @@
 ###
 # Set Path
 SYSTEM_PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
-USER_PATH="$HOME/.pyenv/shims:$HOME/.local/bin:$HOME/.go/bin:$HOME/.node_modules/bin:$(ruby -e 'puts Gem.user_dir')/bin:$HOME/.carbo/bin:$HOME/.krew/bin"
+USER_PATH="$HOME/.pyenv/shims:$HOME/.local/bin:$HOME/.go/bin:$HOME/.node_modules/bin:$(ruby -e 'puts Gem.user_dir')/bin:$HOME/.cargo/bin:$HOME/.krew/bin"
 export PATH="${SYSTEM_PATH}:${USER_PATH}"
 
 # Environment
