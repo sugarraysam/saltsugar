@@ -36,4 +36,8 @@ augroup vimrc
     " --- salt ---
     autocmd FileType jinja,jinja2 set filetype=sls
 
+    " Set .hcl files to type terraform
+    " --- terraform ---
+    autocmd FileType hcl set filetype=terraform
+
 augroup END

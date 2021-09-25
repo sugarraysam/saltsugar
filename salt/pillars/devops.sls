@@ -15,6 +15,7 @@ devops:
     - sqlite # A C library that implements an SQL database engine
     - sshuttle # Transparent proxy server that forwards all TCP packets over ssh
     - tekton-cli # CLI for interacting with the Tekton CI/CD pipeline
+    - terraform # HashiCorp tool for building and updating infrastructure as code idempotently
     - vagrant # Build and distribute virtualized development environments
   dirs:
     - { path: {{ home }}/.local/share/nvim/site/autoload }

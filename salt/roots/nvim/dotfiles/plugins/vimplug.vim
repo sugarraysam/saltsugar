@@ -37,5 +37,8 @@ Plug 'jvirtanen/vim-hcl'
 " saltstack edit .sls files
 Plug 'saltstack/salt-vim'
 
+" vim-terraform
+Plug 'hashivim/vim-terraform'
+
 " Initialize plugin system
 call plug#end()

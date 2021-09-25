@@ -39,9 +39,6 @@ let g:ale_fixers = {
             \   'graphql': [
             \       'prettier',
             \],
-            \   'hcl': [
-            \       'terraform',
-            \],
             \   'markdown': [
             \       'prettier',
             \       'textlint',
@@ -59,6 +56,9 @@ let g:ale_fixers = {
             \],
             \   'sh': [
             \       'shfmt',
+            \],
+            \   'terraform': [
+            \       'terraform',
             \],
             \   'yaml': [
             \       'prettier',
@@ -82,6 +82,10 @@ let g:ale_linters = {
             \],
             \   'salt': [
             \       'salt-lint',
+            \],
+            \   'terraform': [
+            \       'terraform',
+            \       'tflint',
             \],
             \}
 
