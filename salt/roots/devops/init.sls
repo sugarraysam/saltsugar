@@ -8,16 +8,16 @@ devops_symlink_dotfiles:
     - require:
       - pkg: devops_pkgs
 
-devops_gh_binaries:
-  sugbin.dwl_gh_binaries:
-    - binaries: {{ pillar['devops']['gh_binaries'] }}
+devops_github_releases:
+  sugbin.download_github_releases:
+    - releases: {{ pillar['devops']['github_releases'] }}
 
 devops_zsh_completions:
   sugcmd.zsh_completions:
     - completions: {{ pillar['devops']['zsh_completions'] }}
     - require:
       - pkg: devops_pkgs
-      - sugbin: devops_gh_binaries
+      - sugbin: devops_github_releases
 
 # Remove once aws-cli package is upgraded to v2
 install_aws_cli_v2:

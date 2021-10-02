@@ -34,12 +34,9 @@ TODO
 
 # Roadmap
 
-- refactor custom states, Result class with easier upgrade + error detection + logging ?
+- add tfenv
+- import logging from `sretoolbox` + use
 - get rid of `~/perso` and put everything in `~/opt/perso` so its backed in git
-- easy way to install any github release (binary + `.tar.gz` + `.zip`) (missing: tfenv + tflint)
-  -- option #1: add functionality to extract .ZIP in `sugbin` ++ refactor and make state more solid
-  -- option #2: install dependencies from yay using AUR (might not solve all)
-  -- option #3: add code to `sretoolbox`, import module, run salt from venv using `pipenv run <...>`
 - docker configure credential helper
 
 ```bash

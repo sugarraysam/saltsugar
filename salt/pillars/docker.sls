@@ -10,7 +10,7 @@ docker:
         src: /srv/salt/docker/dotfiles/docker.sh,
         dest: {{ grains['sugar']['zshrcd_path'] }}/docker.sh,
       }
-  gh_binaries:
+  github_releases:
     - {
         repo: "hadolint/hadolint",
         urlfmt: "https://github.com/hadolint/hadolint/releases/download/{tag}/hadolint-Linux-x86_64",

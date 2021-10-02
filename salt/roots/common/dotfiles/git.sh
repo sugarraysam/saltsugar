@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# git fetch --all
+alias gfa='git fetch --all'
+
+# git push --force-with-lease
+alias gpfwl='git push --force-with-lease'
+
 # list branches verbose
 alias gba='git branch --list'
 

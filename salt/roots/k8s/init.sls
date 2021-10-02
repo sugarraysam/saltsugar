@@ -6,16 +6,16 @@ k8s_symlink_dotfiles:
   sugfile.symlink_dotfiles:
     - dotfiles: {{ pillar['k8s']['dotfiles'] }}
 
-k8s_gh_binaries:
-  sugbin.dwl_gh_binaries:
-    - binaries: {{ pillar['k8s']['gh_binaries'] }}
+k8s_github_releases:
+  sugbin.download_github_releases:
+    - releases: {{ pillar['k8s']['github_releases'] }}
 
 k8s_zsh_completions:
   sugcmd.zsh_completions:
     - completions: {{ pillar['k8s']['zsh_completions'] }}
     - require:
       - pkg: k8s_pkgs
-      - sugbin: k8s_gh_binaries
+      - sugbin: k8s_github_releases
 
 # Install helm repos
 {% for r in pillar['k8s']['helm_repositories'] %}
@@ -48,4 +48,4 @@ k8s_krew_mgmt:
       - PATH: "{{ salt['environ.get']('PATH') }}:{{ grains['sugar']['extra_path'] }}"
     - require:
       - pkg: k8s_pkgs
-      - sugbin: k8s_gh_binaries
+      - sugbin: k8s_github_releases

@@ -37,7 +37,7 @@ k8s:
     - { name: ingress-nginx, url: "https://kubernetes.github.io/ingress-nginx" }
     - { name: prometheus-community, url: "https://prometheus-community.github.io/helm-charts" }
     - { name: jetstack, url: "https://charts.jetstack.io" }
-  gh_binaries:
+  github_releases:
     - {
         repo: "kubernetes-sigs/kind",
         urlfmt: "https://github.com/kubernetes-sigs/kind/releases/download/{tag}/kind-linux-amd64",

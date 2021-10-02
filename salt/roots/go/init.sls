@@ -10,16 +10,16 @@ go_symlink_dotfiles:
   sugfile.symlink_dotfiles:
     - dotfiles: {{ pillar['go']['dotfiles'] }}
 
-go_gh_binaries:
-  sugbin.dwl_gh_binaries:
-    - binaries: {{ pillar['go']['gh_binaries'] }}
+go_github_releases:
+  sugbin.download_github_releases:
+    - releases: {{ pillar['go']['github_releases'] }}
 
 go_zsh_completions:
   sugcmd.zsh_completions:
     - completions: {{ pillar['go']['zsh_completions'] }}
     - require:
       - pkg: go_pkgs
-      - sugbin: go_gh_binaries
+      - sugbin: go_github_releases
       - cmd: gopkg_ocm
 
 

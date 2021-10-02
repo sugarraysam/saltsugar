@@ -16,23 +16,16 @@ function checkIsRoot() {
 }
 
 function installDeps() {
-    echo "Installing pacman dependencies..."
-    pkgs=(
-        rsync
-        salt
-    )
-    for p in "${pkgs[@]}"; do
-        if [ ! -x "$(which ${p})" ]; then
-            pacman -S --noconfirm "${p}"
-        fi
-    done
+    echo "Installing pipenv and pacman dependencies..."
+    pipenv install
+    pacman -S --noconfirm --needed rsync || true
 }
 
 # Sync dynamic modules with the minions
 # https://docs.saltproject.io/en/latest/ref/modules/all/salt.modules.saltutil.html#salt.modules.saltutil.sync_all
 function syncDynamicModules() {
     echo "Syncing dynamic modules..."
-    salt-call --local saltutil.sync_all >/dev/null 2>&1
+    pipenv run salt-call --local saltutil.sync_all >/dev/null 2>&1
 }
 
 function rsyncFiles() {
@@ -57,9 +50,9 @@ function applyState() {
 
     if [ "${state}" == "highstate" ]; then
         # run a highstate
-        salt-call --local state.apply
+        pipenv run salt-call --local state.apply
     else
-        salt-call --local state.apply "${state}"
+        pipenv run salt-call --local state.apply "${state}"
     fi
 }
 
@@ -67,6 +60,7 @@ function applyState() {
 ### Run
 ###
 checkIsRoot
+pip install --upgrade pipenv
 
 if [ "$#" -eq 0 ]; then
     action="${ACTION:-deploy}"

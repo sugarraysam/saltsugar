@@ -11,14 +11,14 @@ clear_{{ d }}_cache:
 
 ensure_pip:
   cmd.run:
-    - name: python -m ensurepip -U --user
+    - name: /usr/bin/python -m ensurepip -U --user
     - runas: {{ grains['sugar']['user'] }}
     - require:
       - pkg: python_pkgs
 
 install_pip_pkgs:
   cmd.run:
-    - name: pip3 install --user -U {{ " ".join(pillar['python']['pip_pkgs']) }}
+    - name: {{ grains['sugar']['localbin_path'] }}/pip3 install --user -U {{ " ".join(pillar['python']['pip_pkgs']) }}
     - runas: {{ grains['sugar']['user'] }}
     - env:
       - PATH: "{{ salt['environ.get']('PATH') }}:{{ grains['sugar']['extra_path'] }}"

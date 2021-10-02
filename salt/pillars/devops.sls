@@ -22,27 +22,27 @@ devops:
     - { path: {{ home }}/.local/share/nvim/plugged }
     - { path: {{ home }}/.config/nvim/plugins }
     - { path: {{ home }}/.config/nvim/debug }
-  gh_binaries:
+  github_releases:
     - {
         repo: operator-framework/operator-registry,
         urlfmt: "https://github.com/operator-framework/operator-registry/releases/download/{tag}/linux-amd64-opm",
-        dest: {{ grains['sugar']['localbin_path'] }}/opm,
+        name: opm,
       }
     - {
         repo: bazelbuild/buildtools,
         urlfmt: "https://github.com/bazelbuild/buildtools/releases/download/{tag}/buildifier-linux-amd64",
-        dest: {{ grains['sugar']['localbin_path'] }}/buildifier,
+        name: buildifier,
       }
     - {
         repo: bazelbuild/buildtools,
         urlfmt: "https://github.com/bazelbuild/buildtools/releases/download/{tag}/buildozer-linux-amd64",
-        dest: {{ grains['sugar']['localbin_path'] }}/buildozer,
+        name: buildozer,
       }
     # Use bazelisk as bazel, as it will pull and manage versions of bazel
     - {
         repo: bazelbuild/bazelisk,
         urlfmt: "https://github.com/bazelbuild/bazelisk/releases/download/{tag}/bazelisk-linux-amd64",
-        dest: {{ grains['sugar']['localbin_path'] }}/bazel,
+        name: bazel,
       }
     - {
         repo: profclems/glab,
@@ -50,7 +50,16 @@ devops:
       }
     - {
         repo: slok/sloth,
-        urlfmt: "https://github.com/slok/sloth/releases/download/{tag}/sloth-linux-amd64"
+        urlfmt: "https://github.com/slok/sloth/releases/download/{tag}/sloth-linux-amd64",
+      }
+    - {
+        repo: hashicorp/terraform-plugin-docs,
+        urlfmt: "https://github.com/hashicorp/terraform-plugin-docs/releases/download/{tag}/tfplugindocs_{tag_no_v}_linux_amd64.zip",
+        name: tfplugindocs,
+      }
+    - {
+        repo: terraform-linters/tflint,
+        urlfmt: "https://github.com/terraform-linters/tflint/releases/download/{tag}/tflint_linux_amd64.zip",
       }
   dotfiles:
     - {

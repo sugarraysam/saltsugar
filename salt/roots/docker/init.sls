@@ -6,9 +6,9 @@ docker_symlink_dotfiles:
   sugfile.symlink_dotfiles:
     - dotfiles: {{ pillar['docker']['dotfiles'] }}
 
-docker_gh_binaries:
-  sugbin.dwl_gh_binaries:
-    - binaries: {{ pillar['docker']['gh_binaries'] }}
+docker_github_releases:
+  sugbin.download_github_releases:
+    - releases: {{ pillar['docker']['github_releases'] }}
 
 docker_group:
   group.present:

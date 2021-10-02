@@ -18,7 +18,7 @@ go:
         src: /srv/salt/go/dotfiles/go.sh,
         dest: {{ grains['sugar']['zshrcd_path'] }}/go.sh,
       }
-  gh_binaries:
+  github_releases:
     - {
         repo: "golangci/golangci-lint",
         urlfmt: "https://github.com/golangci/golangci-lint/releases/download/{tag}/golangci-lint-{tag_no_v}-linux-amd64.tar.gz",

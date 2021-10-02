@@ -40,10 +40,13 @@ salt-sandbox: ## Create salt sandbox using vagrant
 	@vagrant validate
 	@vagrant up --provision
 
-FILES_TO_REMOVE := $(shell find _build -type f 2>/dev/null)
+test: ## Test saltsugar helper python package
+	@pip install --user --upgrade pipenv
+	@pipenv install --dev
+	@pipenv run pytest tests/
+
 clean: ## Destroy VM and build files from packer.
-	@echo "Removing $(FILES_TO_REMOVE)..."
-	@if [ -d "_build" ]; then rm -fr _build; fi
+	@rm -fr _build .venv || true
 	@vagrant destroy --force
 	-@vboxmanage unregistervm $(BOOTSTRAP_VM_NAME) --delete > /dev/null 2>&1
 
