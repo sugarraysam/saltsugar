@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# Start keychain which drives ssh-agent & ssh-add
+if [ -x "$(which keychain)" ]; then
+    eval "$(keychain --eval --quiet --noask --confhost)"
+fi
+
+# TODO add support for other VM guest
+# OS is VirtualBox VM
+#if [ "$(systemd-detect-virt)" = "oracle" ]; then
+## VBoxClient is not already running
+#if [ -z "$(pgrep VBoxClient)" ]; then
+#/usr/bin/VBoxClient --clipboard
+##/usr/bin/VBoxClient --display
+#fi
+#fi
+
+# Launch Xorg
+if systemctl -q is-active graphical.target && [ -x "$(which startx)" ] && [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+    exec startx ~/.xinitrc >"/tmp/startx_$(date +'%d-%m_%H:%M').log" 2>&1
+fi

@@ -1,0 +1,9 @@
+ # vagrant
+.vagrant/
+
+# packer
+packer_cache/
+_build/
+
+# venv
+.venv

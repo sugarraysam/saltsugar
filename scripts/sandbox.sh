@@ -1,34 +1,42 @@
 #!/bin/bash
 
-export BASE_PKGS=(
-    git
-    vim
-    salt
-    which
-)
-
 function pacmanInit() {
     pacman-key --init
     pacman-key --populate archlinux
     pacman -Syy --noconfirm
     pacman -S --noconfirm --needed archlinux-keyring
-    pacman -Su --noconfirm --needed pacman
+    pacman -S --noconfirm --needed pacman
 }
 
-function installBasePkgs() {
-    for p in "${BASE_PKGS[@]}"; do
-        pacman --noconfirm -S --needed "${p}"
+function installPacmanDeps() {
+    pkgs=(
+        git
+        make
+        vim
+        salt
+        which
+        zsh
+        zsh-completions
+    )
+    pacman --noconfirm -S --needed "${pkgs[@]}"
+}
+
+function configureZsh() {
+    chsh --shell /usr/bin/zsh vagrant
+}
+
+function setWorkdir() {
+    for f in .zprofile .bash_profile; do
+        path="/home/vagrant/${f}"
+        echo "cd /vagrant" >>${path}
+        chown vagrant:vagrant ${path}
     done
-}
-
-function copyEtcMinion() {
-    mkdir -p /etc/salt/
-    cp /tmp/minion /etc/salt/minion
 }
 
 ###
 ### Run
 ###
 pacmanInit
-installBasePkgs
-copyEtcMinion
+installPacmanDeps
+configureZsh
+setWorkdir
