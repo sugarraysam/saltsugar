@@ -5,6 +5,8 @@ common:
     - arch-install-scripts # Scripts to aid in installing Arch Linux (genfstab, pacstrap, arch-chroot)
     - asp # Arch Linux build source file management tool (retrieve PKGBUILD)
     - bat # Cat clone with syntax highlighting and git integration
+    - bluez # Daemons for the bluetooth protocol stack
+    - bluez-utils # Development and debugging utilities for the bluetooth protocol stack
     - calibre # Ebook management application (experimental python3 port)
     - cdrtools # Original cdrtools supporting CD, DVD and BluRay burning (provides mkisofs)
     - chromium # A web browser built for speed, simplicity, and security

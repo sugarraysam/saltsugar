@@ -1,7 +1,15 @@
 #!/bin/bash
 
+# git push -u <remote> <curr_branch>
+function _gitPushTrack() {
+    remote="${1}"
+    current_branch="$(git rev-parse --abbrev-ref HEAD)"
+    git push -u "${remote}" "${current_branch}"
+}
+alias gpu=_gitPushTrack
+
 # git fetch --all
-alias gfa='git fetch --all'
+alias gfa='git fetch --all --prune'
 
 # git push --force-with-lease
 alias gpfwl='git push --force-with-lease'

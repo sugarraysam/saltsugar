@@ -10,7 +10,8 @@ function exportScreens() {
     case "$(cat /etc/machine-id)" in
     "${redhat}")
         export LAPTOP=eDP1
-        export TOP=DP3-3
+        #export TOP=DP3-3
+        export TOP=DP1
         export LEFT=DP1
         ;;
     "${perso}")

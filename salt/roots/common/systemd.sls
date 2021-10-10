@@ -17,3 +17,8 @@ getty_svc:
     - enable: True
     - watch:
       - file: autologin_tmpl
+
+bluetooth_svc:
+  service.running:
+    - name: bluetooth.service
+    - enable: True
