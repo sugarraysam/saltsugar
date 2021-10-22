@@ -48,7 +48,7 @@ k8s:
       }
     - {
         repo: "kubernetes-sigs/krew",
-        urlfmt: "https://github.com/kubernetes-sigs/krew/releases/download/{tag}/krew.tar.gz",
+        urlfmt: "https://github.com/kubernetes-sigs/krew/releases/download/{tag}/krew-linux_amd64.tar.gz",
       }
     - {
         repo: "kubernetes-sigs/kubebuilder",
