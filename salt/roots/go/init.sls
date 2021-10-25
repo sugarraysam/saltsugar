@@ -27,7 +27,7 @@ go_zsh_completions:
 {% for p in pillar['go']['gopkgs'] %}
 gopkg_{{ p.name }}:
   cmd.run:
-    - name: "go install {{ p.url }}@latest || go get -u {{ p.url }} || true"
+    - name: "go install {{ p.url }}@latest || true"
     - runas: {{ grains['sugar']['user'] }}
     - env:
       - GO111MODULE: auto
