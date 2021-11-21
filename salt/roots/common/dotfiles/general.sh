@@ -43,3 +43,6 @@ alias feh="feh --auto-rotate"
 
 # set watch default interval to 1 second
 alias watch="watch -n 1"
+
+# rescan pci devices (useful to unplug/replug Thunderbolt)
+alias pcirescan="echo '1' | sudo tee /sys/bus/pci/rescan > /dev/null"

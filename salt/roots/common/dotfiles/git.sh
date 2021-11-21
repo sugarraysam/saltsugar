@@ -1,12 +1,15 @@
 #!/bin/bash
 
-# git push -u <remote> <curr_branch>
-function _gitPushTrack() {
-    remote="${1}"
-    current_branch="$(git rev-parse --abbrev-ref HEAD)"
-    git push -u "${remote}" "${current_branch}"
+# vim -p $(git diff <branch> --name-only)
+function _vimGitChangedOnly() {
+    master="${1}"
+    if [ -z "${master}" ]; then
+        echo >&2 "Please specify name of master branch."
+        return 1
+    fi
+    nvim -p $(git diff "${master}" --name-only)
 }
-alias gpu=_gitPushTrack
+alias vchanged=_vimGitChangedOnly
 
 # git fetch --all
 alias gfa='git fetch --all --prune'
@@ -15,7 +18,7 @@ alias gfa='git fetch --all --prune'
 alias gpfwl='git push --force-with-lease'
 
 # list branches verbose
-alias gba='git branch --list'
+alias gba='git branch --list -v'
 
 # commit without adding everything
 alias gcm="git commit -m"

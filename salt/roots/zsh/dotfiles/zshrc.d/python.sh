@@ -3,9 +3,6 @@
 export PIPENV_VENV_IN_PROJECT=1
 export PYENV_SHELL=zsh
 
-# Pipenv shell completion
-eval "$(pipenv --completion)"
-
 # pyenv config custom command
 command pyenv rehash 2>/dev/null
 pyenv() {
