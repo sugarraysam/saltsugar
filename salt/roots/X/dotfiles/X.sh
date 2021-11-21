@@ -10,8 +10,7 @@ function exportScreens() {
     case "$(cat /etc/machine-id)" in
     "${redhat}")
         export LAPTOP=eDP1
-        export TOP=DP3-3
-        export LEFT=DP1
+        export TOP="$(xrandr -q | grep ' connected' | awk '{print $1}' | grep -v ${LAPTOP})"
         ;;
     "${perso}")
         export LAPTOP=eDP1
@@ -21,11 +20,13 @@ function exportScreens() {
 }
 
 function _xrandrSingle() {
-    exportScreens
+    #exportScreens
 
-    xrandr --verbose --output "${LAPTOP}" --auto
-    [[ -n "${TOP}" ]] && xrandr --verbose --output "${TOP}" --off
-    [[ -n "${LEFT}" ]] && xrandr --verbose --output "${LEFT}" --off
+    # --auto disables connected but disabled outputs
+    xrandr --auto
+    #xrandr --verbose --output "${LAPTOP}" --auto
+    #[[ -n "${TOP}" ]] && xrandr --verbose --output "${TOP}" --off
+    #[[ -n "${LEFT}" ]] && xrandr --verbose --output "${LEFT}" --off
 }
 alias xrandrSingle='_xrandrSingle'
 

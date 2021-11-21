@@ -7,7 +7,6 @@ go:
   gobin: {{ gobin }}
   pkgs:
     - go # Core compiler tools for the Go programming language
-    - gopls # Language server for Go programming language
     - go-tools # Developer tools for the Go programming language
     - protobuf # Protocol Buffers - Google's data interchange format
   dirs:
@@ -42,6 +41,7 @@ go:
     - { name: kubeval, url: github.com/instrumenta/kubeval } # evaluate k8s yaml files
     - { name: go_getter, url: github.com/hashicorp/go-getter/cmd/go-getter } # download files or directories from various sources
     - { name: promtool, url: github.com/prometheus/prometheus/cmd/promtool } # promtool prometheus CLI helper
+    - { name: gopls, url: golang.org/x/tools/gopls } # go language server for vscode
   cmds:
     - { id: "clean_cache", cmd: "go clean -cache" } # cleans $HOME/.cache/go-build
     - { id: "clean_modcache", cmd: "go clean -modcache" } # cleans $GOPATH/pkg/mod

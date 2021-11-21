@@ -79,3 +79,7 @@ if [ "${action}" == "deploy" ]; then
     syncDynamicModules
     applyState "${state}"
 fi
+
+# Need to clean pipenv cache as many files become owned by the root user after
+# running this script
+rm -fr ${HOME}/.cache/pipenv
