@@ -78,6 +78,13 @@ https://docs.docker.com/engine/reference/commandline/login/#credentials-store
 | vscode    | X         | merged in devops                                                     |
 | zsh       |           | add ~/.zshrc.d/pulseaudio.sh, write fzf plugins/scripts              |
 
+### Bugs
+
+```bash
+# k8s/krew github_release issue
+[ERROR   ] Can't find binary in extracted dir: ['krew-linux_amd64']. Got [Errno 2] No such file or directory: '/tmp/tmpo5x5ar66/krew'
+```
+
 # Resources
 
 - [Write custom state modules](https://docs.saltproject.io/en/latest/ref/states/writing.html)

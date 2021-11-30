@@ -7,3 +7,7 @@ _build/
 
 # venv
 .venv
+
+# python
+build/
+*.egg-info/

@@ -20,13 +20,10 @@ function exportScreens() {
 }
 
 function _xrandrSingle() {
-    #exportScreens
-
-    # --auto disables connected but disabled outputs
-    xrandr --auto
-    #xrandr --verbose --output "${LAPTOP}" --auto
-    #[[ -n "${TOP}" ]] && xrandr --verbose --output "${TOP}" --off
-    #[[ -n "${LEFT}" ]] && xrandr --verbose --output "${LEFT}" --off
+    exportScreens
+    xrandr --verbose --output "${LAPTOP}" --auto
+    [[ -n "${TOP}" ]] && xrandr --verbose --output "${TOP}" --off
+    [[ -n "${LEFT}" ]] && xrandr --verbose --output "${LEFT}" --off
 }
 alias xrandrSingle='_xrandrSingle'
 

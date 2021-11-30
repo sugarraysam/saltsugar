@@ -61,6 +61,11 @@ devops:
         repo: terraform-linters/tflint,
         urlfmt: "https://github.com/terraform-linters/tflint/releases/download/{tag}/tflint_linux_amd64.zip",
       }
+    - {
+        repo: mt-sre/addon-metadata-operator,
+        urlfmt: "https://github.com/mt-sre/addon-metadata-operator/releases/download/{tag}/mtcli_{tag_no_v}_Linux_x86_64.tar.gz",
+        name: mtcli,
+      }
   dotfiles:
     - {
         src: /srv/salt/devops/dotfiles/vscode/settings.json,
