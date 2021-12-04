@@ -80,6 +80,7 @@ if [ "${action}" == "deploy" ]; then
     applyState "${state}"
 fi
 
-# Need to clean pipenv cache as many files become owned by the root user after
-# running this script
+# Need to clean pipenv cache and virtualenv cache because many files become
+# owned by the root user after running this script
 rm -fr ${HOME}/.cache/pipenv
+rm -fr ${HOME}/.local/share/virtualenv

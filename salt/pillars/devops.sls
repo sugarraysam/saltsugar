@@ -79,4 +79,5 @@ devops:
     - "gh completion -s zsh > /usr/share/zsh/site-functions/_gh"
     - "glab completion -s zsh > /usr/share/zsh/site-functions/_glab"
     - "tkn completion zsh > /usr/share/zsh/site-functions/_tkn"
+    - "mtcli completion zsh > /usr/share/zsh/site-functions/_mtcli"
   aws_cli_v2_url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
