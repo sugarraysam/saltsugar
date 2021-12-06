@@ -19,11 +19,22 @@ function exportScreens() {
     esac
 }
 
+function listActiveMonitors() {
+    xrandr --listactivemonitors | tail -n +2 | awk '{print $2}'
+}
+
 function _xrandrSingle() {
     exportScreens
     xrandr --verbose --output "${LAPTOP}" --auto
-    [[ -n "${TOP}" ]] && xrandr --verbose --output "${TOP}" --off
-    [[ -n "${LEFT}" ]] && xrandr --verbose --output "${LEFT}" --off
+
+    # turn off all other active monitors
+    for monitorRaw in $(listActiveMonitors); do
+        monitor="${monitorRaw#+}"
+        monitor="${monitor#\*}"
+        if [ "${monitor}" != "${LAPTOP}" ]; then
+            xrandr --output "${monitor}" --off
+        fi
+    done
 }
 alias xrandrSingle='_xrandrSingle'
 
