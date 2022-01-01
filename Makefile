@@ -46,8 +46,8 @@ test: ## Test saltsugar helper python package
 	@pipenv run pytest tests/
 
 clean: ## Destroy VM and build files from packer.
-	@rm -fr _build .venv || true
-	@vagrant destroy --force
+	@sudo rm -fr _build .venv || true
+	@vagrant destroy --force > /dev/null 2>&1
 	-@vboxmanage unregistervm $(BOOTSTRAP_VM_NAME) --delete > /dev/null 2>&1
 
 ##@ Deploy

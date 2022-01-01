@@ -17,6 +17,8 @@ function checkIsRoot() {
 
 function installDeps() {
     echo "Installing pipenv and pacman dependencies..."
+    python -m ensurepip -U
+    pip install -U pipenv
     pipenv install
     pacman -S --noconfirm --needed rsync || true
 }
@@ -60,8 +62,6 @@ function applyState() {
 ### Run
 ###
 checkIsRoot
-pip install --upgrade pipenv
-
 if [ "$#" -eq 0 ]; then
     action="${ACTION:-deploy}"
     state="${STATE:-highstate}"

@@ -11,3 +11,4 @@ _build/
 # python
 build/
 *.egg-info/
+.python-version
