@@ -34,7 +34,7 @@ TODO
 
 # Roadmap
 
-- add tfenv
+- add tfenv + add user to `tfenv` group
 - import logging from `sretoolbox` + use
 - get rid of `~/perso` and put everything in `~/opt/perso` so its backed in git
 - docker configure credential helper
