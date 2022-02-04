@@ -56,3 +56,5 @@ k8s:
   nf_conntrack_max: 393216
   krew_plugins:
     - default/tree
+    - default/whoami
+    - default/get-all

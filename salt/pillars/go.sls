@@ -8,6 +8,7 @@ go:
   pkgs:
     - go # Core compiler tools for the Go programming language
     - go-tools # Developer tools for the Go programming language
+    - graphviz # Graph visualization software (export SVG graph using `$ go tool pprof`)
     - protobuf # Protocol Buffers - Google's data interchange format
   dirs:
     - { path: {{ gopath }} }
@@ -29,6 +30,10 @@ go:
     - {
         repo: "goreleaser/goreleaser",
         urlfmt: "https://github.com/goreleaser/goreleaser/releases/download/{tag}/goreleaser_Linux_x86_64.tar.gz",
+      }
+    - {
+        repo: "magefile/mage",
+        urlfmt: "https://github.com/magefile/mage/releases/download/{tag}/mage_{tag_no_v}_Linux-64bit.tar.gz",
       }
   gopkgs:
     - { name: cobra, url: github.com/spf13/cobra/cobra } # CLI program generator (was failing on 11-05-2021)
