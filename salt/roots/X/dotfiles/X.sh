@@ -10,7 +10,8 @@ function exportScreens() {
     case "$(cat /etc/machine-id)" in
     "${redhat}")
         export LAPTOP=eDP1
-        export TOP="$(xrandr -q | grep ' connected' | awk '{print $1}' | grep -v ${LAPTOP})"
+        export TOP=DP3-3
+        export LEFT=DP1
         ;;
     "${perso}")
         export LAPTOP=eDP1

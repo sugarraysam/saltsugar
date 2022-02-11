@@ -6,6 +6,7 @@ devops:
     - buildah # A tool which facilitates building OCI images
     - clang # C language family frontend for LLVM (provides 'clang-format' required by proto plugin)
     - code # The Open Source build of Visual Studio Code (vscode) editor
+    - gitleaks # Audit Git repos for secrets and keys (redhat infosec scanner)
     - github-cli # The github CLI
     - openldap # Lightweight Directory Access Protocol (LDAP) client and server
     - packer # tool for creating identical machine images for multiple platforms from a single source configuration
@@ -64,6 +65,10 @@ devops:
         repo: mt-sre/addon-metadata-operator,
         urlfmt: "https://github.com/mt-sre/addon-metadata-operator/releases/download/{tag}/mtcli_{tag_no_v}_Linux_x86_64.tar.gz",
         name: mtcli,
+      }
+    - {
+        repo: mt-sre/ocm-addons,
+        urlfmt: "https://github.com/mt-sre/ocm-addons/releases/download/{tag}/ocm-addons_{tag_no_v}_linux_amd64.tar.gz",
       }
   dotfiles:
     - {

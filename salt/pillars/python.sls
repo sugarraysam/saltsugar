@@ -13,5 +13,6 @@ python:
     - isort
     - pip
     - pipenv
+    - pylint
     - pre-commit
     - wheel
