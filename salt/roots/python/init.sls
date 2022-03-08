@@ -23,5 +23,4 @@ install_pip_pkgs:
     - env:
       - PATH: "{{ salt['environ.get']('PATH') }}:{{ grains['sugar']['extra_path'] }}"
     - require:
-      - pkg: python_pkgs
       - cmd: ensure_pip
