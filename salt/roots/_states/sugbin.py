@@ -4,7 +4,7 @@ import shutil
 import tempfile
 from pathlib import Path
 
-import saltsugar.salt_helpers as helpers
+import saltsugar.salt_utils as utils
 
 log = logging.getLogger(__name__)
 
@@ -35,13 +35,13 @@ def download_github_releases(name, releases, **kwargs):
             res = extract_and_copy(kwargs, dest)
         else:
             res = __states__["file.managed"](**kwargs)
-        helpers.update_results(results, res)
+        utils.update_results(results, res)
 
         # fail fast
         if not res["result"]:
-            return helpers.error(results)
+            return utils.error(results)
 
-    return helpers.success(results)
+    return utils.success(results)
 
 
 def validate_required_fields(release):
@@ -122,7 +122,7 @@ def _get_source(release):
     Resolve the urlfmt by using both {tag} and {tag_no_v}.
     Default to latest github repo tag.
     """
-    tag = release.get("tag", helpers.latest_github_repo_tag(release["repo"]))
+    tag = release.get("tag", utils.latest_github_repo_tag(release["repo"]))
     tag_no_v = tag[1:] if tag.startswith("v") else tag
     return release["urlfmt"].format(tag=tag, tag_no_v=tag_no_v)
 

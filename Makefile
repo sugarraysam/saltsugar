@@ -43,12 +43,12 @@ salt-sandbox: ## Create salt sandbox using vagrant
 test: ## Test saltsugar helper python package
 	@pip install --user --upgrade pipenv
 	@pipenv install --dev
-	@pipenv run pytest tests/
+	@pipenv run pytest -v tests/
 
 clean: ## Destroy VM and build files from packer.
-	@sudo rm -fr _build .venv || true
-	@vagrant destroy --force > /dev/null 2>&1
-	-@vboxmanage unregistervm $(BOOTSTRAP_VM_NAME) --delete > /dev/null 2>&1
+	-@sudo rm -fr _build build .venv *.egg-info
+	-@vagrant destroy --force > /dev/null 2>&1
+	-@vboxmanage unregistervm $(BOOTSTRAP_VM_NAME) --delete > /dev/null 2>&1 || true
 
 ##@ Deploy
 
