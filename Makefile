@@ -36,13 +36,15 @@ help: ## Display this help.
 
 ##@ Development
 
+init: ## Create venv /w pipenv
+	@pip install --user --upgrade pipenv
+	@pipenv install --dev
+
 salt-sandbox: ## Create salt sandbox using vagrant
 	@vagrant validate
 	@vagrant up --provision
 
-test: ## Test saltsugar helper python package
-	@pip install --user --upgrade pipenv
-	@pipenv install --dev
+test: init ## Test saltsugar helper python package
 	@pipenv run pytest -v tests/
 
 clean: ## Destroy VM and build files from packer.
