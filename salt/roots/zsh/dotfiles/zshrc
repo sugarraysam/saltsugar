@@ -24,9 +24,6 @@ export GOCACHE=/home/sugar/.cache/go-build
 # $ bat --list-themes | fzf --preview="bat --theme={} --color=always /path/to/file"
 export BAT_THEME="Monokai Extended"
 
-# npm global install directory inside user directory ($ npm install -g <pkg>)
-export npm_config_prefix="~/.node_modules"
-
 # GPG git signing
 export GPG_TTY=$(tty)
 

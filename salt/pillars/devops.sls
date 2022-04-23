@@ -6,6 +6,7 @@ devops:
     - buildah # A tool which facilitates building OCI images
     - clang # C language family frontend for LLVM (provides 'clang-format' required by proto plugin)
     - code # The Open Source build of Visual Studio Code (vscode) editor
+    - gitleaks # Audit Git repos for secrets and keys (redhat infosec scanner)
     - github-cli # The github CLI
     - openldap # Lightweight Directory Access Protocol (LDAP) client and server
     - packer # tool for creating identical machine images for multiple platforms from a single source configuration
@@ -15,7 +16,6 @@ devops:
     - sqlite # A C library that implements an SQL database engine
     - sshuttle # Transparent proxy server that forwards all TCP packets over ssh
     - tekton-cli # CLI for interacting with the Tekton CI/CD pipeline
-    - terraform # HashiCorp tool for building and updating infrastructure as code idempotently
     - vagrant # Build and distribute virtualized development environments
   dirs:
     - { path: {{ home }}/.local/share/nvim/site/autoload }
@@ -61,6 +61,15 @@ devops:
         repo: terraform-linters/tflint,
         urlfmt: "https://github.com/terraform-linters/tflint/releases/download/{tag}/tflint_linux_amd64.zip",
       }
+    - {
+        repo: mt-sre/addon-metadata-operator,
+        urlfmt: "https://github.com/mt-sre/addon-metadata-operator/releases/download/{tag}/mtcli_{tag_no_v}_Linux_x86_64.tar.gz",
+        name: mtcli,
+      }
+    - {
+        repo: mt-sre/ocm-addons,
+        urlfmt: "https://github.com/mt-sre/ocm-addons/releases/download/{tag}/ocm-addons_{tag_no_v}_linux_amd64.tar.gz",
+      }
   dotfiles:
     - {
         src: /srv/salt/devops/dotfiles/vscode/settings.json,
@@ -74,4 +83,5 @@ devops:
     - "gh completion -s zsh > /usr/share/zsh/site-functions/_gh"
     - "glab completion -s zsh > /usr/share/zsh/site-functions/_glab"
     - "tkn completion zsh > /usr/share/zsh/site-functions/_tkn"
+    - "mtcli completion zsh > /usr/share/zsh/site-functions/_mtcli"
   aws_cli_v2_url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip

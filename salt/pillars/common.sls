@@ -22,6 +22,8 @@ common:
     - gopass # The slightly more awesome standard unix password manager for teams
     - htop # Interactive process viewer
     - httpie # cURL for humans
+    - iftop # Display bandwidth usage on an interface
+    - iotop # View I/O usage of processes
     - jq # Command-line JSON processor
     - keychain # A front-end to ssh-agent, allowing one long-running ssh-agent process per system, rather than per login
     - ldns # Fast DNS library supporting recent RFCs (provides 'drill')
@@ -41,6 +43,7 @@ common:
     - ripgrep # A search tool that combines the usability of ag with the raw speed of grep
     - squashfs-tools # Tools for squashfs, a highly compressed read-only filesystem for Linux
     - strace # A diagnostic, debugging and instructional userspace tracer
+    - sysstat # A collection of performance monitoring tools (iostat,isag,mpstat,pidstat,sadf,sar)
     - tigervnc # Suite of VNC servers and clients. Based on the VNC 4 branch of TightVNC.
     - tldr # Command line client for tldr, a collection of simplified and community-driven man pages
     - tldr # Command line client for tldr, a collection of simplified and community-driven man pages.

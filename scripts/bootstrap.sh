@@ -24,7 +24,9 @@ function pacmanDeps() {
     pkgs=(
         parted
         reflector
+        linux-firmware
         util-linux # provides lsblk
+        btrfs-progs
     )
     pacman --noconfirm -S --needed "${pkgs[@]}"
 }
@@ -100,6 +102,16 @@ function mountFs() {
     echo "Mounting ${CRYPT_PART} + ${BOOT_PART}..."
     mkfs.btrfs ${CRYPT_PART}
     mount ${CRYPT_PART} /mnt
+
+    echo "Creating btrfs subvolumes..."
+    btrfs subvolume create /mnt/@
+    btrfs subvolume create /mnt/@home
+    umount /mnt
+
+    echo "Mounting btrfs subvolumes..."
+    mount -o noatime,commit=120,compress=zstd,space_cache,subvol=@ ${CRYPT_PART} /mnt
+    mkdir -p /mnt/home
+    mount -o noatime,commit=120,compress=zstd,space_cache,subvol=@home ${CRYPT_PART} /mnt/home
 
     mkdir -p /mnt/boot
     mkfs.fat -F32 ${BOOT_PART}

@@ -1,0 +1,19 @@
+name: ci
+
+# Runs when we push changes to any go file under the go/ directory.
+on:
+  push:
+    paths:
+      - "saltsugar/**"
+
+jobs:
+  build:
+    name: pytest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
+        with:
+          python-version: "3.9"
+      - name: Run unit tests
+        run: make test

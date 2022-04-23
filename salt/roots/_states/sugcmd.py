@@ -13,7 +13,10 @@ def zsh_completions(name, completions, **kwargs):
             # Augment PATH to find all binaries
             "env": {
                 "PATH": ":".join(
-                    [__salt__["environ.get"]("PATH"), __grains__["sugar"]["extra_path"]]
+                    [
+                        __salt__["environ.get"]("PATH"),
+                        __grains__["sugar"]["extra_path"],
+                    ]
                 )
             },
         }

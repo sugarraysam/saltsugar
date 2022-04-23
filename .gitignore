@@ -7,3 +7,9 @@ _build/
 
 # venv
 .venv
+
+# python
+build/
+*.egg-info/
+.python-version
+__pycache__/

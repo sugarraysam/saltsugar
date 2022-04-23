@@ -34,9 +34,22 @@ TODO
 
 # Roadmap
 
-- add tfenv
+### btrfs
+
+- review btrfs installation and subvolumes, test in pacstrap
+- run `btrfs scrub start /` weekly
+- run `btrfs balance start -musage=50 -dusage=50 /` ??
+
+### other
+
+- add yay OO class? use subprocess to run yay commands as users /w --yes everywhere ++ add `yay_pkgs` integration
+  - search is it possible to script yay installs? (asks sudo) use root?
+  - https://wiki.archlinux.org/title/Node.js_#Alternate_installations
+- add nvm install + upgrade script
+- add tfenv + add user to `tfenv` group
 - import logging from `sretoolbox` + use
 - get rid of `~/perso` and put everything in `~/opt/perso` so its backed in git
+- add logging
 - docker configure credential helper
 
 ```bash

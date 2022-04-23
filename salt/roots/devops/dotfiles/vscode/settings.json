@@ -38,7 +38,7 @@
     "python.formatting.blackPath": "${env:HOME}/.local/bin/black",
     "python.formatting.blackArgs": [
         "--line-length=80",
-        "--experimental-string-processing",
+        "--preview",
     ],
     "python.sortImports.path": "${env:HOME}/.local/bin/isort",
     "python.sortImports.args": [
@@ -71,7 +71,7 @@
     "sync.forceDownload": false,
     "editor.fontSize": 14,
     "terminal.integrated.fontSize": 14,
-    "python.languageServer": "Microsoft",
+    "python.languageServer": "Jedi",
     "files.insertFinalNewline": true,
     "editor.rulers": [
         80,
