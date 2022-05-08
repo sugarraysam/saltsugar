@@ -80,3 +80,5 @@ function _updateUpstream() {
     done
 }
 alias gitUpdateUpstream="_updateUpstream"
+
+alias gitRemoveFromHistory='f(){ git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch $1" HEAD};f'

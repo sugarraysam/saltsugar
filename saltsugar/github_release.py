@@ -30,6 +30,7 @@ class GithubReleaseABC(ABC):
         repo,
         urlfmt,
         localbin_path="/home/sugar/.local/bin",
+        member_name=None,
         tag=None,
         name=None,
     ):
@@ -37,6 +38,7 @@ class GithubReleaseABC(ABC):
         self.urlfmt = urlfmt
         self.localbin_path = localbin_path
         self.name = self._get_name(name)
+        self.member_name = member_name if member_name is not None else self.name
         self.tag = self._get_tag(tag)
         self.src = self._get_src()
         self.dst = f"{self.localbin_path}/{self.name}"
@@ -108,12 +110,12 @@ class GithubReleaseTarGz(GithubReleaseABC):
     def _extract(self, tar_bytes):
         with tarfile.open(fileobj=io.BytesIO(tar_bytes)) as tf:
             for name in tf.getnames():
-                if name.endswith(self.name):
+                if name.endswith(self.member_name):
                     return tf.extractfile(name).read()
 
             # not found
             err_msg = (
-                f"Archive does not contain {self.name}. Members are"
+                f"Archive does not contain {self.member_name}. Members are"
                 f" {tf.getnames()}."
             )
             self.log.error(err_msg)
@@ -124,13 +126,13 @@ class GithubReleaseZip(GithubReleaseABC):
     def _extract(self, zip_bytes):
         with zipfile.ZipFile(io.BytesIO(zip_bytes)) as archive:
             for name in archive.namelist():
-                if name.endswith(self.name):
+                if name.endswith(self.member_name):
                     with archive.open(name, mode="r") as zf:
                         return zf.read()
 
             # not found
             err_msg = (
-                f"Archive does not contain {self.name}. Members are"
+                f"Archive does not contain {self.member_name}. Members are"
                 f" {archive.namelist()}."
             )
             self.log.error(err_msg)

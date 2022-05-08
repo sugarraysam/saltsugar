@@ -16,5 +16,9 @@ rust:
       }
     - {
         name: rust-src,
-        toolchain: nightly,
+        toolchain: stable,
+      }
+    - {
+        name: rust-analysis,
+        toolchain: stable,
       }

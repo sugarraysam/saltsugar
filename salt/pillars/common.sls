@@ -87,11 +87,6 @@ common:
         group: root,
       }
     - {
-        src: /srv/salt/common/dotfiles/catsay,
-        dest: {{ grains['sugar']['localbin_path'] }}/catsay,
-        mode: "0755",
-      }
-    - {
         src: /srv/salt/common/dotfiles/pacman.sh,
         dest: {{ grains['sugar']['zshrcd_path'] }}/pacman.sh,
       }

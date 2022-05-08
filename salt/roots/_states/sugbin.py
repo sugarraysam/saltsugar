@@ -13,13 +13,14 @@ log = logging.getLogger(__name__)
 def download_github_releases(name, releases, **kwargs):
     """
     type binary {
-        repo        string [required]
-        urlfmt      string [required] Can use {tag} and {tag_no_v} templates
-        name        string
-        dest        string
-        tag         string
-        user        string
-        group       string
+        repo          string [required]
+        urlfmt        string [required] Can use {tag} and {tag_no_v} templates
+        name          string
+        member_name   string
+        dest          string
+        tag           string
+        user          string
+        group         string
     }
 
     type binaries []binary
