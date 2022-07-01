@@ -85,7 +85,7 @@ def main(grains):
     sugar["localbin_path"] = os.path.join(sugar["home"], ".local/bin")
 
     # General
-    sugar["timezone"] = "America/Chicago"
+    sugar["timezone"] = "America/Los_Angeles"
     sugar["hostname"] = "htp"
     sugar["keymap"] = "us"
     sugar["vtx_enabled"] = _vtx_enabled(grains)

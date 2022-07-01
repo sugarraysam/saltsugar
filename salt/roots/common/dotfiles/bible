@@ -24,3 +24,7 @@ $ pyenv install <version>
 $ pipenv --python <Aversion>
 $ pipenv shell
 $ python -m tkinter
+
+# Burn archlinux on USB: https://wiki.archlinux.org/title/USB_flash_installation_medium
+$ lsblk OR fdisk -l
+$ sudo dd bs=4M if=path/to/archlinux.iso of=/dev/sdX conv=fsync oflag=direct status=progress
