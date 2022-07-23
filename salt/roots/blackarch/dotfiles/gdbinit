@@ -1,1 +1,2 @@
-source /usr/share/gef/gef.py
+# Uncomment to enable gef
+#source /usr/share/gef/gef.py
