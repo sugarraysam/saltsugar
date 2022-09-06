@@ -1,61 +1,67 @@
 #!/bin/bash
 
 function usage() {
-    echo >&2 "usage ${0}: [ACTION] [STATE]"
-    echo >&2 "    -> ACTION:  deploy, <action>"
-    echo >&2 "    -> STATE:   highstate, <state>"
-    echo >&2 "Exiting."
-    exit 1
+	echo >&2 "usage ${0}: [ACTION] [STATE]"
+	echo >&2 "    -> ACTION:  deploy, <action>"
+	echo >&2 "    -> STATE:   highstate, <state>"
+	echo >&2 "Exiting."
+	exit 1
 }
 
 function checkIsRoot() {
-    if [ "${EUID}" -ne 0 ]; then
-        echo >&2 "Please run with sudo/root privileges."
-        exit 1
-    fi
+	if [ "${EUID}" -ne 0 ]; then
+		echo >&2 "Please run with sudo/root privileges."
+		exit 1
+	fi
+}
+
+function updatePacman() {
+	# update keyring separately as it sometimes causes a bug
+	pacman -S --noconfirm archlinux-keyring
+	pacman -Syu --noconfirm
 }
 
 function installDeps() {
-    echo "Installing pipenv and pacman dependencies..."
-    python -m ensurepip -U
-    pip install -U pipenv
-    pipenv install
-    pacman -S --noconfirm --needed rsync || true
+	echo "Installing pipenv and pacman dependencies..."
+	python -m ensurepip -U
+	pip install -U pipenv
+	pipenv install
+	pacman -S --noconfirm --needed rsync || true
 }
 
 # Sync dynamic modules with the minions
 # https://docs.saltproject.io/en/latest/ref/modules/all/salt.modules.saltutil.html#salt.modules.saltutil.sync_all
 function syncDynamicModules() {
-    echo "Syncing dynamic modules..."
-    pipenv run salt-call --local saltutil.sync_all >/dev/null 2>&1
+	echo "Syncing dynamic modules..."
+	pipenv run salt-call --local saltutil.sync_all >/dev/null 2>&1
 }
 
 function rsyncFiles() {
-    echo "Copying files to /srv/salt and /srv/pillar..."
-    mkdir -p /srv/salt
-    mkdir -p /srv/pillar
-    cp "${PWD}/salt/minion" /etc/salt/minion
-    # -a == --archive == -rlptgoD
-    # -r recurse
-    # -l symlinks
-    # -p perms
-    # -t timestamps
-    # -g groups
-    # -o owner
-    rsync -aq --delete --exclude "*.slsc" "${PWD}/salt/roots/." /srv/salt
-    rsync -aq --delete --exclude "*.slsc" "${PWD}/salt/pillars/." /srv/pillar
+	echo "Copying files to /srv/salt and /srv/pillar..."
+	mkdir -p /srv/salt
+	mkdir -p /srv/pillar
+	cp "${PWD}/salt/minion" /etc/salt/minion
+	# -a == --archive == -rlptgoD
+	# -r recurse
+	# -l symlinks
+	# -p perms
+	# -t timestamps
+	# -g groups
+	# -o owner
+	rsync -aq --delete --exclude "*.slsc" "${PWD}/salt/roots/." /srv/salt
+	rsync -aq --delete --exclude "*.slsc" "${PWD}/salt/pillars/." /srv/pillar
 }
 
 function applyState() {
-    state="${1}"
-    echo "Running state ${state}..."
+	state="${1}"
+	echo "Running state ${state}..."
 
-    if [ "${state}" == "highstate" ]; then
-        # run a highstate
-        pipenv run salt-call --local state.apply
-    else
-        pipenv run salt-call --local state.apply "${state}"
-    fi
+	if [ "${state}" == "highstate" ]; then
+		# run a highstate
+		pipenv run salt-call --local state.apply
+	else
+		pipenv run salt-call --local state.apply "${state}"
+	fi
 }
 
 ###
@@ -63,21 +69,22 @@ function applyState() {
 ###
 checkIsRoot
 if [ "$#" -eq 0 ]; then
-    action="${ACTION:-deploy}"
-    state="${STATE:-highstate}"
+	action="${ACTION:-deploy}"
+	state="${STATE:-highstate}"
 elif [ "$#" -eq 2 ]; then
-    action="${1}"
-    state="${2}"
+	action="${1}"
+	state="${2}"
 else
-    usage
+	usage
 fi
 
+updatePacman
 installDeps
 rsyncFiles
 
 if [ "${action}" == "deploy" ]; then
-    syncDynamicModules
-    applyState "${state}"
+	syncDynamicModules
+	applyState "${state}"
 fi
 
 # Need to clean pipenv cache and virtualenv cache because many files become

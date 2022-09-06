@@ -3,6 +3,7 @@
 nvim:
   pkgs:
     - neovim # Fork of Vim aiming to improve user experience, plugins, and GUIs
+    - pandoc # Conversion between markup formats
     - prettier # An opinionated code formatter for JS, JSON, CSS, YAML and much more (ALE)
     - shellcheck # Shell script analysis tool (required by VScode extension)
     - shfmt # ALE fixer for bash

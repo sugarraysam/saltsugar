@@ -40,8 +40,7 @@ let g:ale_fixers = {
             \       'prettier',
             \],
             \   'markdown': [
-            \       'prettier',
-            \       'textlint',
+            \       'pandoc',
             \],
             \   'python': [
             \       'autopep8',

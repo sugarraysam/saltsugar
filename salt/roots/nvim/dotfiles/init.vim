@@ -23,6 +23,9 @@ set smartindent     "Automatically inserts indentation in some cases
 " Buffers
 set bufhidden=delete    " Automatically remove a buffer when not in a visible tab
 
+" (TODO debug) Always interact /w clipboard
+set clipboard+=unnamedplus
+
 
 """
 """ Mappings
