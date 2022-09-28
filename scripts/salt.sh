@@ -18,7 +18,7 @@ function checkIsRoot() {
 function updatePacman() {
 	# update keyring separately as it sometimes causes a bug
 	pacman -S --noconfirm archlinux-keyring
-	pacman -Syu --noconfirm
+	pacman -Syu --noconfirm --overwrite "/usr/lib/python*"
 }
 
 function installDeps() {
