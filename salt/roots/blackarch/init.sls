@@ -27,6 +27,7 @@ blackarch_git_repos_{{ r.name }}:
     - user: {{ grains['sugar']['user'] }}
     - rev: master
     - depth: 1
+    - force_reset: True
     - force_checkout: True # discard unwritten changes
     - force_clone: True # overwrite existing dir
 {% endfor %}
