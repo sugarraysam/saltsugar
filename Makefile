@@ -37,6 +37,7 @@ help: ## Display this help.
 ##@ Development
 
 init: ## Create venv /w pipenv
+	@pip install --upgrade pip
 	@pip install --user --upgrade pipenv
 	@pipenv install --dev
 
