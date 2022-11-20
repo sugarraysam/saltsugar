@@ -123,9 +123,7 @@ workspace 2 output DP1
 # program to start on initial i3 startup
 exec --no-startup-id alacritty -t Archsugar -e tmux new-session -s main
 exec --no-startup-id flameshot
-exec --no-startup-id firefox
 exec --no-startup-id chromium
-exec --no-startup-id code
 exec --no-startup-id redshift -c ~/.config/redshift.conf
 exec --no-startup-id pavucontrol
 

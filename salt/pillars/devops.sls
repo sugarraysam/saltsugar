@@ -10,7 +10,6 @@ devops:
     - github-cli # The github CLI
     - openldap # Lightweight Directory Access Protocol (LDAP) client and server
     - packer # tool for creating identical machine images for multiple platforms from a single source configuration
-    - podman # Tool and library for running OCI-based containers in pods
     - protobuf # Protocol Buffers - Google's data interchange format (required by proto plugin)
     - skopeo # A command line utility for various operations on container images and image repositories.
     - sqlite # A C library that implements an SQL database engine
